@@ -16,7 +16,7 @@ public class DataBaseControllerTests {
 	University u = new University("i2", "i", "i", "i", 1, 1.1, 1.2, 1.3, 1.4, 1.5, 2, 2.1, 2.2, 3, 4, 5, emp);
 	Users user = new Users("i", "i", "i", "i", 'Y', 'u');
 	Users juser = new Users("John", "User", "juser", "user", 'Y', 'u');
-	ArrayList<SavedSchools> saved = dbc.getSavedSchools(juser);
+	ArrayList<SavedSchools> saved = dbc.getSavedSchools(juser.getUsername());
 	
 	@Before
 	public void setUp() throws Exception {
@@ -133,7 +133,7 @@ public class DataBaseControllerTests {
 	@Test
 	public void testGetSavedSchools() {
 		ArrayList<SavedSchools> expNonResult = null;
-		ArrayList<SavedSchools> result = dbc.getSavedSchools(juser);
+		ArrayList<SavedSchools> result = dbc.getSavedSchools(juser.getUsername());
 		assertNotEquals("ArrayList " + expNonResult,expNonResult, result);
 	}
 	

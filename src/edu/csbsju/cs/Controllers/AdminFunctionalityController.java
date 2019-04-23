@@ -201,6 +201,11 @@ public University viewSchoolDetails(String universityName) throws NameNotFoundEx
 		
 
 	}
+
+public ArrayList<University> getAllSchoolDetails() 
+{
+	return dbc.getAllSchoolDetails();
+}
 	/*
 	* Allows the admin to print user information in the database
 	*@param Users user 

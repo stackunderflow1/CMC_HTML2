@@ -11,24 +11,26 @@ cellspacing="2">
 <tbody>
 <tr align="center">
 
-<td colspan="8" rowspan="1" style="vertical-align: top;">
+<td colspan="8" rowspan="1" style="vertical-align: top;"><a
+href="AddUniverstiy.jsp">ADD A UNIVERSITY</a>
 </td>
 
 </tr>
+
 <%
 	String name = request.getParameter("Username");
-    out.println("Saved Universities for user: " + name);
+    out.println("List of All Universities");
 	String uName = request.getParameter("Username");
-	StudentUserInteraction uc = (StudentUserInteraction) session.getAttribute("uc");
-	Users cu = uc.getProfile(uName);
-	ArrayList <SavedSchools> s = uc.viewAllSavedUniversitys(uName);
+	AdminInteraction uc = (AdminInteraction) session.getAttribute("uc");
+	Users cu = uc.getUser(uName);
+	ArrayList <University> s = uc.getAllSchoolDetails();
 	 for(int i = 0; i < s.size(); i++)
 	 {
-		SavedSchools sc = s.get(i);%>
+		University sc = s.get(i);%>
 
 <tr>
 <td style="vertical-align: top;">
-<form method="post" action="DeleteSavedSchool.jsp" name="Delete">
+<form method="post" action="DeleteUniversity.jsp" name="Delete">
     <input name="Delete" value="Delete" type="submit">
     <input name="Username" value=<%=cu.getUsername() %> type="hidden">
 </form> 
@@ -68,8 +70,15 @@ cellspacing="2">
 </td>
 <td style="vertical-align: top;"><%out.println(sc.getEmphases()); %>
 </td>
+<td style="vertical-align: top;">
+<form method="post" action="EditUniversity.jsp" name="Edit">
+    <input name="Edit" value="Edit" type="submit">
+    <input name="Username" value="<%=cu.getUsername() %>" type="hidden">
+</form>
+</td>
 </tr>
 <%} %>
+
 
 
 </body>

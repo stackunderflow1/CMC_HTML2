@@ -141,6 +141,10 @@ public class AdminInteraction {
 		
 	}
 	
+	public ArrayList<University> getAllSchoolDetails() 
+	{
+		return afc.getAllSchoolDetails();
+	}
 	
 
 }

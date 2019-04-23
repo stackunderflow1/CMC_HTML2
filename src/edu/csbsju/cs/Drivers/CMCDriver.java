@@ -91,7 +91,7 @@ public class CMCDriver {
 		System.out.println("\n\n\n********** VIEW SCHOOL **********\n");
 		University uni = sui.viewUniversity("ABILENE CHRISTIAN UNIVERSITY");
 		System.out.println(uni.getName());
-		ArrayList<SavedSchools> save = sui.viewAllSavedUniversitys(user);
+		ArrayList<SavedSchools> save = sui.viewAllSavedUniversitys(user.getUsername());
 		
 		System.out.println("\n\n********** VIEW SAVED SCHOOLS **********\n");
 		System.out.println("**List of currently saved schools**");
@@ -102,14 +102,14 @@ public class CMCDriver {
 		
 		System.out.println("\n\n********** SAVE SCHOOL **********\n");
 		System.out.println("**Original list of saved schools**\n");
-		save = sui.viewAllSavedUniversitys(user);
+		save = sui.viewAllSavedUniversitys(user.getUsername());
 		for(int i = 0; i< save.size(); i++)
 		{
 		System.out.println(save.get(i).getUniversity().print());
 		}
 		sui.saveUniversity(uni, user);
 		System.out.println("\n**New list of saved schools after saving school**\n");
-		ArrayList<SavedSchools>saveTo = sui.viewAllSavedUniversitys(user);
+		ArrayList<SavedSchools>saveTo = sui.viewAllSavedUniversitys(user.getUsername());
 		for(int i = 0; i< saveTo.size(); i++)
 		{
 			System.out.println(saveTo.get(i).getUniversity().print() + "\n");
@@ -119,14 +119,14 @@ public class CMCDriver {
 		
 		System.out.println("\n\n********** REMOVE SAVED SCHOOL **********\n");
 		System.out.println("**List of currently saved schools**\n");
-		saveTo = sui.viewAllSavedUniversitys(user);
+		saveTo = sui.viewAllSavedUniversitys(user.getUsername());
 		for(int i = 0; i< saveTo.size(); i++)
 		{
 		System.out.println(saveTo.get(i).print());
 		}
-		sui.removeSavedSchool(user, uni.getName());
+		sui.removeSavedSchool(user.getUsername(), uni.getName());
 		System.out.println("\n**New list of saved schools after removing saved school**\n");
-		ArrayList<SavedSchools>save3 = sui.viewAllSavedUniversitys(user);
+		ArrayList<SavedSchools>save3 = sui.viewAllSavedUniversitys(user.getUsername());
 		for(int i = 0; i< save3.size(); i++)
 		{
 		System.out.println(save3.get(i).getUniversity().print());
@@ -142,7 +142,7 @@ public class CMCDriver {
 		Users dummy = new Users("irahal", "pass");
 		//ai.deleteUser(dummy);
 		ArrayList<Users> allUsers = ai.getAllUsers();
-		Users u = sui.getProfile(dummy);
+		Users u = sui.getProfile(dummy.getUsername());
 		System.out.println("*** Shows Profile of Dummy User***");
 		System.out.println(u.getFirstName());
 		System.out.println(u.getLastName());
