@@ -54,11 +54,13 @@ public class StudentFunctionalityController {
 	 */
 
 
-	public void editUser(String uName, String fName, String lName, String pWord) {
+	public void editProfile(String uName, String fName, String lName, String pWord) {
 		
 		Users u = dbc.getUser(uName);
 		if(u == null) 
 			  throw new IllegalArgumentException("The username entered was not found");
+
+		
 		u.setFirstName(fName);
 		u.setLastName(lName);
 		u.setPassword(pWord);

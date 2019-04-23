@@ -12,7 +12,6 @@ import edu.csbsju.cs.Entity.Users;
 
 import java.util.*;
 
-import javax.naming.NameNotFoundException;
 
 /**
  * This class is the Database controller that allows a user to access the
@@ -146,12 +145,11 @@ public class DataBaseController {
 	public boolean addUniversity(University uni) {
 		boolean isNowThere = false;
 		if (!this.checkSchoolName(uni.getName())) {
-			isNowThere = true;
 			univDBlib.university_addUniversity(uni.getName(), uni.getState(), uni.getLocation(), uni.getControl(),
 					uni.getNumStudents(), uni.getFemales(), uni.getSATV(), uni.getSATM(), uni.getExpenses(),
 					uni.getFinancialAid(), uni.getNumApplicants(), uni.getAdmitted(), uni.getEnrolled(),
 					uni.getAcademicScale(), uni.getSocialScale(), uni.getqOLScale());
-
+			isNowThere = true;
 			ArrayList<String> emp = uni.getEmphases();
 			int i = 0;
 			while (i < emp.size()) {
@@ -194,11 +192,12 @@ public class DataBaseController {
 	 * @returns addSuccess
 	 *
 	 */
-	public void addUser(Users use) {
-
-		univDBlib.user_addUser(use.getFirstName(), use.getLastName(), use.getUsername(), use.getPassword(),
+	public int addUser(Users use) {
+		
+		int i = univDBlib.user_addUser(use.getFirstName(), use.getLastName(), use.getUsername(), use.getPassword(),
 				use.getType());
-
+		
+		return i;
 	}
 
 	/**
@@ -210,7 +209,6 @@ public class DataBaseController {
 	 *
 	 */
 	public void deleteSchool(University uni) {
-		boolean success = false;
 
 		ArrayList<University> uniE = this.getAllSchoolDetails();
 		for (University u : uniE) {
@@ -219,7 +217,6 @@ public class DataBaseController {
 					univDBlib.university_removeUniversityEmphasis(u.getName(), i);
 				}
 				univDBlib.university_deleteUniversity(uni.getName());
-				success = true;
 			}
 		}
 	}
@@ -331,63 +328,17 @@ public class DataBaseController {
 		univDBlib.user_removeSchool(uName.getUsername(), school);
 
 	}
-public University viewSchoolDetails(String universityName) throws NameNotFoundException {
+	public University viewSchoolDetails(String universityName) {
 		
-	String[][] allSchools1 = univDBlib.university_getUniversities();
-	ArrayList<University> allSchools2 =  new ArrayList<University>();
-	String[][] schoolEmp = univDBlib.university_getNamesWithEmphases();
-	int i = 0;
-			int a = 0;
-			ArrayList<String> emp = new ArrayList<String>();
-			while (a < schoolEmp.length) {
-				if (schoolEmp[a][0].equals(allSchools1[i][0])) {
-					emp.add(schoolEmp[a][1]);
-					a++;
-				} else {
-					a++;
-				}
-			}
-			University school = new University(allSchools1[i][0], allSchools1[i][1], allSchools1[i][2], allSchools1[i][3],
-					Integer.parseInt(allSchools1[i][4]), Double.parseDouble(allSchools1[i][5]),
-					Double.parseDouble(allSchools1[i][6]), Double.parseDouble(allSchools1[i][7]),
-					Double.parseDouble(allSchools1[i][8]), Double.parseDouble(allSchools1[i][9]),
-					Integer.parseInt(allSchools1[i][10]), Double.parseDouble(allSchools1[i][11]),
-					Double.parseDouble(allSchools1[i][12]), Integer.parseInt(allSchools1[i][13]),
-					Integer.parseInt(allSchools1[i][14]), Integer.parseInt(allSchools1[i][15]), emp);
-
-			allSchools2.add(school);
-			if(allSchools1[i][0].equals(universityName))
-			{
-			for (University univ : allSchools2)
-			{
-			System.out.println(allSchools1[i][0] + " " + allSchools1[i][1]+ " " + allSchools1[i][2]+ " " +allSchools1[i][3]+ " " +
-					Integer.parseInt(allSchools1[i][4])+ " " + Double.parseDouble(allSchools1[i][5])+ " " +
-					Double.parseDouble(allSchools1[i][6])+ " " + Double.parseDouble(allSchools1[i][7])+ " " +
-					Double.parseDouble(allSchools1[i][8])+ " " + Double.parseDouble(allSchools1[i][9])+ " " +
-					Integer.parseInt(allSchools1[i][10])+ " " + Double.parseDouble(allSchools1[i][11])+ " " +
-					Double.parseDouble(allSchools1[i][12])+ " " + Integer.parseInt(allSchools1[i][13])+ " " +
-					Integer.parseInt(allSchools1[i][14])+ " " + Integer.parseInt(allSchools1[i][15]));
-			return univ;
-		}
-		i++;
-	}
-	return null;
-	
-	/*	boolean found = false;
-		for (University univ : getAllSchoolDetails()) {
-			if (univ.getName().equals(universityName)){
-				found = true;
-				return univ;
-			}else 
-			{
-				 found = false;
-			}
-		}
-		if(found == false)
+		ArrayList<University> univ = getAllSchoolDetails();
+		for(int i = 0; i<univ.size(); i++)
 		{
-			throw new NameNotFoundException("University: " + universityName + " not found."); 
+			if(univ.get(i).getName().equals(universityName))
+			{
+				return univ.get(i);
+			}
 		}
-		return null;*/
+		throw new IllegalArgumentException("School not found!");
 	}
 
 	/**

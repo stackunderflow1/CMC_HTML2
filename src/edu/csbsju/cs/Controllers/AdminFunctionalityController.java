@@ -33,8 +33,12 @@ public class AdminFunctionalityController {
 	*/
 	public void addUser(Users newUser)
 	{
-	dbc.addUser(newUser);
-
+		int i = dbc.addUser(newUser);
+		if(i == -1)
+		{
+			System.out.print("Similar username is already there");
+			//throw new IllegalArgumentException("Similar username is already there");
+		}
 	}
 	/*
 	* Allows the admin to delete a user from the database
@@ -51,7 +55,7 @@ public class AdminFunctionalityController {
 	*@return the updated user in the database; x
 	*/
 
-public void editUser(String fName, String lName, String uName, String pWord, char status, char type) {
+public void editUser(String uName, String fName, String lName, String pWord, char type, char status) {
 
 if(!(type == 'u' || type == 'a'))
 	  throw new IllegalArgumentException("The type entered is invalid");
@@ -65,7 +69,6 @@ else if(!(status == 'Y' || status == 'N'))
 	
 		u.setFirstName(fName);
 		u.setLastName(lName);
-		u.setUserName(uName);
 		u.setPassword(pWord);
 		u.setStatus(status);
 		u.setType(type);
@@ -84,7 +87,12 @@ else if(!(status == 'Y' || status == 'N'))
 	*/
 	public void addUniversity(University uni)
 	{
-		dbc.addUniversity(uni);
+		boolean check = dbc.addUniversity(uni);
+		if (check == false)
+		{
+			System.out.println("Similar university name is already there");
+			//throw new IllegalArgumentException("Similar university name is already there");
+		}
 		
 	}
 	/*
@@ -116,6 +124,7 @@ else if(!(status == 'Y' || status == 'N'))
 	public void deleteSchool(University uni)
 	{
 		dbc.deleteSchool(uni);
+	
 	}
 	/*
 	* Allows the admin to edit an university in the database
@@ -127,65 +136,61 @@ else if(!(status == 'Y' || status == 'N'))
 			 int numApplicants, double admitted, double enrolled, int academicScale, int socialScale, 
 			 int qOLScale, ArrayList<String> emp) throws NameNotFoundException
 	{
-		boolean success = false;
 		ArrayList<University> univ = dbc.getAllSchoolDetails();
 		for (University x : univ)
 		{
 			if(x.getName().equals(old))
 			{
-				University u = dbc.viewSchoolDetails(x.getName());
-				u.setName(name);
-				u.setState(state);
-				u.setLocation(location);
-				u.setControl(control);
-				u.setNumStudents(numStudents);
-				u.setFemales(females);
-				u.setSATV(SATV);
-				u.setSATM(SATM);
-				u.setExpenses(expenses);
-				u.setFinancialAid(financialAid);
-				u.setNumApplicants(numApplicants);
-				u.setAdmitted(admitted);
-				u.setEnrolled(enrolled);
-				u.setAcademicScale(academicScale);
-				u.setSocialScale(socialScale);
-				u.setqOLScale(qOLScale);
+				x.setName(name);
+				x.setState(state);
+				x.setLocation(location);
+				x.setControl(control);
+				x.setNumStudents(numStudents);
+				x.setFemales(females);
+				x.setSATV(SATV);
+				x.setSATM(SATM);
+				x.setExpenses(expenses);
+				x.setFinancialAid(financialAid);
+				x.setNumApplicants(numApplicants);
+				x.setAdmitted(admitted);
+				x.setEnrolled(enrolled);
+				x.setAcademicScale(academicScale);
+				x.setSocialScale(socialScale);
+				x.setqOLScale(qOLScale);
 		//University uni = new University(name, state, location, control, numStudents, females, SATV, SATM, expenses, financialAid, numApplicants, admitted, enrolled, academicScale, socialScale, qOLScale, emp);
 	
-		 dbc.editSchool(u);
-		 success = true;
+		 dbc.editSchool(x);
 			}
-		}
-			if (success == false)
-			{
-				throw new IllegalArgumentException("School does not exist");
-			}
+	}
 	}
 	/*
 	* Allows the admin to deactivate a university in the database
 	*@param Users user
 	*@return the  university deactivated in the database; x
 	*/
-	public void deactivateUser(Users user)
+	public void changeStatus(String uName)
 	{
-
+		boolean found = false;
+		Users user = getUser(uName);
+		if(user == null) 
+			  throw new IllegalArgumentException("The username entered was not found");
 		if(user.getStatus() == 'Y') {
+			//System.out.print(user.getStatus());
 			user.setStatus('N');
-			dbc.editUser(user);}
-		else
-		{
-			System.out.println("User already deactived");
+			//System.out.print(user.getStatus());
+			dbc.editUser(user);
+			found = true;
 		}
-	}
-	
-	public void activateUser(Users user)
-	{
-		if(user.getStatus() == 'N') {
-			user.setStatus('Y');
-			dbc.editUser(user);}
-		else
+		else if(user.getStatus() == 'N')
 		{
-			System.out.println("User already active");
+			user.setStatus('Y');
+			dbc.editUser(user);
+			found = true;
+		}
+		if(found == false)
+		{
+			//System.out.println("User's status was not found");
+			throw new IllegalArgumentException("User's status was not found");
 		}
 	}
 	
