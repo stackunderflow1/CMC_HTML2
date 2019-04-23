@@ -21,11 +21,10 @@ public class CMCDriver {
 		Users user = ai.getUser("juser");
 		DataBaseController dbc = new DataBaseController();
 		
-		
+		ArrayList<University> univ = dbc.getAllSchoolDetails();
 		ArrayList<String> emp = new ArrayList<String>();
-		emp.add("MATH");
+		emp.add("LIBERAL-ARTS");
 		emp.add("COMPUTER-SCIENCE");
-		University university = new University("ANATOL", "MINNESOTA", "SUBURBAN", "PRIVATE", 9000, 56.0, 530.0, 500.0, 35000.0, 15000.0, 3000, 81.0, 75.0, 3, 3, 3, emp);
 		
 		
 		System.out.println("********** LOG ON **********\n");
@@ -90,7 +89,8 @@ public class CMCDriver {
 		
 		
 		System.out.println("\n\n\n********** VIEW SCHOOL **********\n");
-		University uni =  sui.viewSchoolDetails("ABILENE CHRISTIAN UNIVERSITY");
+		University uni = sui.viewUniversity("ABILENE CHRISTIAN UNIVERSITY");
+		System.out.println(uni.getName());
 		ArrayList<SavedSchools> save = sui.viewAllSavedUniversitys(user);
 		
 		System.out.println("\n\n********** VIEW SAVED SCHOOLS **********\n");
@@ -108,7 +108,7 @@ public class CMCDriver {
 		System.out.println(save.get(i).getUniversity().print());
 		}
 		sui.saveUniversity(uni, user);
-		System.out.println("\n**New list of saved schools after saving school**");
+		System.out.println("\n**New list of saved schools after saving school**\n");
 		ArrayList<SavedSchools>saveTo = sui.viewAllSavedUniversitys(user);
 		for(int i = 0; i< saveTo.size(); i++)
 		{
@@ -125,7 +125,7 @@ public class CMCDriver {
 		System.out.println(saveTo.get(i).print());
 		}
 		sui.removeSavedSchool(user, uni.getName());
-		System.out.println("**New list of saved schools after removing saved school**");
+		System.out.println("\n**New list of saved schools after removing saved school**\n");
 		ArrayList<SavedSchools>save3 = sui.viewAllSavedUniversitys(user);
 		for(int i = 0; i< save3.size(); i++)
 		{
@@ -137,73 +137,127 @@ public class CMCDriver {
 		sui.viewRecommendedUniversities(uni.getName());
 		
 		System.out.println("\n\n********** VIEW PROFILE **********\n");
-		System.out.println("\n\n*** Creates Dummy User ***\n");
-		ai.addUser("Imad", "Rahal", "irahal", "pass", 'Y', 'u');
+		System.out.println("*** 'Creates Dummy User' ***\n");
+		ai.addUser("Imad", "Rahal", "irahal", "pass", 'u', 'Y');
 		Users dummy = new Users("irahal", "pass");
 		//ai.deleteUser(dummy);
 		ArrayList<Users> allUsers = ai.getAllUsers();
 		Users u = sui.getProfile(dummy);
+		System.out.println("*** Shows Profile of Dummy User***");
 		System.out.println(u.getFirstName());
 		System.out.println(u.getLastName());
 		System.out.println(u.getUsername());
 		System.out.println(u.getPassword());
-		System.out.println(u.getStatus());
 		System.out.println(u.getType());
+		System.out.println(u.getStatus());
+		System.out.println("\n*** New List After Adding Dummy User***");
 		for(Users i: allUsers)
 		{
-			System.out.println(i.getFirstName() + ", " + i.getLastName() + ", " + i.getUsername() + ", " + i.getPassword() + ", " + i.getStatus() + ", " +
-					i.getType());
+			System.out.println("\n"+ i.getFirstName() + ", " + i.getLastName() + ", " + i.getUsername() + ", " + i.getPassword() + ", " + i.getType() + "," + i.getStatus());
 		}
 		
 		System.out.println("\n\n********** EDIT PROFILE **********\n");
-		sui.editUser(dummy.getUsername(), "Hello", "World", "password");
-		ArrayList<Users> allUsers2 = ai.getAllUsers();
-		for(Users i: allUsers2)
+		sui.editProfile(dummy.getUsername(), "Hello", "World", "password");
+		System.out.println("*** List of Users After Edit Profile of Dummy User***\n");
+		allUsers = ai.getAllUsers();
+		for(Users i: allUsers)
 		{
-			System.out.println(i.getFirstName() + ", " + i.getLastName() + ", " + i.getUsername() + ", " + i.getPassword() + ", " + i.getStatus() + ", " +
-					i.getType());
+			System.out.println("\n"+i.getFirstName() + ", " + i.getLastName() + ", " + i.getUsername() + ", " + i.getPassword() + ", " + i.getType() + "," + i.getStatus());
 		}
 		
-		System.out.println("\n\n********** ADD USER**********\n");
-		ai.addUser("Anton", "Andrews", "aandrews", "pass", 'Y', 'u');
+		System.out.println("\n\n********** ADD USER**********");
+		ai.addUser("Anton", "Andrews", "aandrews", "pass", 'u', 'Y');
 		Users dummy1 = new Users("aandrews", "pass");
+		//ai.deleteUser(dummy);
 		//ai.deleteUser(dummy1);
-		ArrayList<Users> allUsers3 = ai.getAllUsers();
-		for(Users u1: allUsers3)
+		allUsers = ai.getAllUsers();
+		for(Users i: allUsers)
 		{
-			System.out.println(u1.getFirstName() + ", " + u1.getLastName() + ", " + u1.getUsername() + ", " + u1.getPassword() + ", " + u1.getStatus() + ", " +
-					u1.getType());
+			System.out.println("\n"+i.getFirstName() + ", " + i.getLastName() + ", " + i.getUsername() + ", " + i.getPassword() + ", " + i.getType() + "," + i.getStatus());
 			
 		}
 		
-		System.out.println("\n\n********** EDIT USER **********\n");
-		ai.editUser("I", "AmGroot",dummy1.getUsername(), "pword", 'Y', 'u');
-		ArrayList<Users> allUsers4 = ai.getAllUsers();
-		for(Users i: allUsers4)
+		System.out.println("\n\n********** ADD USER WITH SAME USERNAME**********");
+		ai.addUser("Anton", "Andrews", "aandrews", "pass", 'u', 'Y');
+		
+		System.out.println("\n\n********** EDIT USER **********");
+		ai.editUser(dummy1.getUsername(),"I", "AmGroot", "pword", 'u', 'Y');
+		 allUsers = ai.getAllUsers();
+		for(Users i: allUsers)
 		{
-			System.out.println(i.getFirstName() + ", " + i.getLastName() + ", " + i.getUsername() + ", " + i.getPassword() + ", " + i.getStatus() + ", " +
-					i.getType());
+			System.out.println("\n"+i.getFirstName() + ", " + i.getLastName() + ", " + i.getUsername() + ", " + i.getPassword() + ", " + i.getType() + "," + i.getStatus());
 		}
 		
-		System.out.println("\n\n********** DEACTIVATE USER **********\n");
-		ai.deactivateUser(dummy1);
-		ArrayList<Users> allUsers6 = ai.getAllUsers();
-		for(Users i: allUsers6)
+		System.out.println("\n\n********** CHANGE USER STATUS **********");
+		ai.changeStatus(dummy1.getUsername());
+		allUsers = ai.getAllUsers();
+		for(Users i: allUsers)
 		{
-			System.out.println(i.getFirstName() + ", " + i.getLastName() + ", " + i.getUsername() + ", " + i.getPassword() + ", " + i.getStatus() + ", " +
-					i.getType());
+			System.out.println("\n"+i.getFirstName() + ", " + i.getLastName() + ", " + i.getUsername() + ", " + i.getPassword() + ", " + i.getType() + "," + i.getStatus());
 		}
 		
-		System.out.println("\n\n********** DELETE USER **********\n");
+		System.out.println("\n\n********** DELETE USERS **********");
 		ai.deleteUser(dummy1);
-		ArrayList<Users> allUsers5 = ai.getAllUsers();
-		for(Users i: allUsers5)
+		ai.deleteUser(dummy);
+		System.out.println("\n***Deletes All Newly Added Users***");
+		allUsers = ai.getAllUsers();
+		for(Users i: allUsers)
 		{
-			System.out.println(i.getFirstName() + ", " + i.getLastName() + ", " + i.getUsername() + ", " + i.getPassword() + ", " + i.getStatus() + ", " +
-					i.getType());
+			System.out.println("\n"+i.getFirstName() + ", " + i.getLastName() + ", " + i.getUsername() + ", " + i.getPassword() + ", " + i.getType() + "," + i.getStatus());
 		}
 		
 		System.out.println("\n\n********** ADD UNIVERSITY **********\n");
+		//ai.addUniversity("ANATOL", "MINNESOTA", "SUBURBAN", "PRIVATE", 9000, 56.0, 530.0, 500.0, 35000.0, 15000.0, 3000, 81.0, 75.0, 3, 3, 3, emp);
+		//ai.addUniversity("ABILENE CHRISTIAN UNIVERSITY", "TEXAS", "SUBURBAN", "PRIVATE", 10000, 50.0, -1, -1, 12088.0, 70, 4000, 90.0, 80.0, 2, 3, 3, emp);
+		univ = dbc.getAllSchoolDetails();
+		System.out.println("*** Newly Added University***\n");
+		University x1 = null;
+		for(int i = 0; i<univ.size(); i++)
+		{
+			if (univ.get(i).getName().equals("ANATOL"))
+			{
+			System.out.println(univ.get(i).print());
+			x1 = univ.get(i);
+			
+					}
+		}
+		ai.deleteSchool(x1);
+		
+		/*System.out.println("\n\n********** ADD UNIVERSITY WITH SAME NAME **********\n");
+		univ = dbc.getAllSchoolDetails();
+		ai.addUniversity("ANATOL", "MINNESOTA", "SUBURBAN", "PRIVATE", 9000, 56.0, 530.0, 500.0, 35000.0, 15000.0, 3000, 81.0, 75.0, 3, 3, 3, emp);
+		
+		
+		System.out.println("\n\n********** EDIT UNIVERSITY **********\n");
+		univ = dbc.getAllSchoolDetails();
+		ai.editSchool(x1.getName(),"ANATOL2", "MINNESOTA", "SUBURBAN", "PRIVATE", 9000, 56.0, 530.0, 500.0, 35000.0, 15000.0, 3000, 81.0, 75.0, 3, 3, 3, emp);
+					
+		univ = dbc.getAllSchoolDetails();
+		System.out.println("\n*** Newly Edited University***\n");
+		for(University i: univ)
+		{
+			if (i.getName().equals("ANATOL1"))
+					{
+			System.out.println(i.print());
+					}
+		}
+		
+		System.out.println("\n\n********** DELETE UNIVERSITY **********\n");
+		univ = dbc.getAllSchoolDetails();
+		ai.deleteSchool(x1);
+		univ = dbc.getAllSchoolDetails();
+		for(University i: univ)
+		{
+			if (i.getName().equals(x1.getName()) || i.getName().equals("ANATOL"))
+					{
+			System.out.println(i.print());
+			ai.deleteSchool(i);
+					}
+		}*/
+		}
+		
+		
+		
 		
 		
 		
@@ -298,5 +352,6 @@ public class CMCDriver {
 		}
 		*/
 	}
+
 	
-}
+
