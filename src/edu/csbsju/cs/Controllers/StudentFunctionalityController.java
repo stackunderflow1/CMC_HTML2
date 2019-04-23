@@ -68,9 +68,9 @@ public class StudentFunctionalityController {
 
 	}
 	
-	public Users getProfile(Users u)
+	public Users getProfile(String u)
 	{
-		return dbc.getUser(u.getUsername());
+		return dbc.getUser(u);
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class StudentFunctionalityController {
 	 * 
 	 * @return an ArrayList of saved schools
 	 */
-	public ArrayList<SavedSchools> getSavedSchools(Users u) {
+	public ArrayList<SavedSchools> getSavedSchools(String u) {
 
 		return dbc.getSavedSchools(u);
 	}
@@ -141,7 +141,7 @@ public class StudentFunctionalityController {
 	 * 
 	 * @return 0 if the school was remove, -1 otherwise
 	 */
-	public void removeSavedSchool(Users name, String school) {
+	public void removeSavedSchool(String name, String school) {
 		 dbc.removeSavedSchool(name, school);
 	}
 	

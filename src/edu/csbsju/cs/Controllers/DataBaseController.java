@@ -279,14 +279,14 @@ public class DataBaseController {
 	*@returns savedSchools
 	*
 	*/
-	public ArrayList<SavedSchools> getSavedSchools(Users u){
+	public ArrayList<SavedSchools> getSavedSchools(String u){
 		String [][] allSavedSchools = univDBlib.user_getUsernamesWithSavedSchools();
 		ArrayList<SavedSchools> saveList = new ArrayList<SavedSchools>();
 		ArrayList<University> allSchools = new ArrayList<University>();
 		
 		for (int i = 0; i < allSavedSchools.length; i++) {
 			
-			if (allSavedSchools[i][0].equals(u.getUsername())) {
+			if (allSavedSchools[i][0].equals(u)) {
 				 allSchools = this.getAllSchoolDetails();
 				
 				 for (int x = 0; x < allSchools.size(); x++){
@@ -323,9 +323,9 @@ public class DataBaseController {
 	 * @returns success
 	 *
 	 */
-	public void removeSavedSchool(Users uName, String school) {
+	public void removeSavedSchool(String uName, String school) {
 
-		univDBlib.user_removeSchool(uName.getUsername(), school);
+		univDBlib.user_removeSchool(uName, school);
 
 	}
 	public University viewSchoolDetails(String universityName) {

@@ -33,7 +33,7 @@ public class StudentUserInteraction {
 	*@param 
 	*@returns the saved schools in the database
 	*/
-  public ArrayList<SavedSchools> viewAllSavedUniversitys(Users u) 
+  public ArrayList<SavedSchools> viewAllSavedUniversitys(String u) 
   { 
     return sfc.getSavedSchools(u);
   }
@@ -71,7 +71,7 @@ public class StudentUserInteraction {
 	*@param University school
 	*@returns University list without the school that was deleted
 	*/
-  public void removeSavedSchool(Users user, String school)
+  public void removeSavedSchool(String user, String school)
   {
      sfc.removeSavedSchool(user, school);
   }
@@ -81,7 +81,7 @@ public class StudentUserInteraction {
 	  sfc.editProfile(uName, fName, lName, pWord);
   }
   
-  public Users getProfile(Users u)
+  public Users getProfile(String u)
   {
 	  return sfc.getProfile(u);
   }
