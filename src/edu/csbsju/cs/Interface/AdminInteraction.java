@@ -56,9 +56,9 @@ public class AdminInteraction {
 	*@returns the updated user
 	*/
 
-	public void editUser(String fName, String lName, String uName, String pWord, char status, char type) 
+	public void editUser(String uName, String fName, String lName, String pWord, char type, char status) 
 	{
-	afc.editUser(fName, lName, uName, pWord, status, type);
+	afc.editUser(uName, fName, lName, pWord, type, status);
 	}
 	/**
 	* Adds a new university to the database
@@ -73,7 +73,7 @@ public class AdminInteraction {
 			 int numApplicants, double admitted, double enrolled, int academicScale, int socialScale, 
 			 int qOLScale, ArrayList<String> emphasess)
 	{
-		University uni = new University( name,  state, location,  control,  numStudents, 
+		University uni = new University(name,  state, location,  control,  numStudents, 
 				  females,  SATV,  SATM,  expenses,  financialAid, 
 				  numApplicants,  admitted, enrolled, academicScale, socialScale, 
 				  qOLScale, emphasess);
@@ -119,16 +119,12 @@ public class AdminInteraction {
 	*@param Users user
 	*@returns the list of users without the deactivated user
 	*/
-	public void deactivateUser(Users user)
+	public void changeStatus(String user)
 	{
-		afc.deactivateUser(user);
+		afc.changeStatus(user);
 
 	}
 	
-	public void activateUser(Users user)
-	{
-		afc.activateUser(user);
-	}
 	
 	 public University viewSchoolDetails(String universityName) throws NameNotFoundException 
 	  {

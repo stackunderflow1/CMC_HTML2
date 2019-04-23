@@ -23,9 +23,10 @@ public class StudentUserInteraction {
 	*@returns the a university in the database
 	*/
 	private StudentFunctionalityController sfc = new StudentFunctionalityController();
-  public University viewUniversity(University uni) throws NameNotFoundException
+	
+  public University viewUniversity(String uni) throws NameNotFoundException
   {
-    return sfc.viewSchoolDetails(uni.getName());
+    return sfc.viewSchoolDetails(uni);
   }
   /**
 	* Displays all the saved schools that the user saved in the database
@@ -75,14 +76,9 @@ public class StudentUserInteraction {
      sfc.removeSavedSchool(user, school);
   }
   
-  public University viewSchoolDetails(String universityName) throws NameNotFoundException 
-  {
-	   return sfc.viewSchoolDetails(universityName);
-  }
-  
 
-  public void editUser(String uName, String fName, String lName, String pWord) {
-	  sfc.editUser(uName, fName, lName, pWord);
+  public void editProfile(String uName, String fName, String lName, String pWord) {
+	  sfc.editProfile(uName, fName, lName, pWord);
   }
   
   public Users getProfile(Users u)
