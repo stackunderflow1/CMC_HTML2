@@ -130,8 +130,17 @@ public class UniversityController {
 			}}
 				
 					}
+		if(!schools.equals(schools2)) {
 		return schools2;
 		}
+		
+		else
+		{
+		ArrayList<University> empty = new ArrayList<University>();
+		return empty;
+		}
+		}
+	
 	/** 
   	*gets all the school details out of the database
 	*@param 
@@ -171,6 +180,27 @@ public class UniversityController {
 		topRecommendedSort(distances, sc);
 			}
 			
+	
+	
+	/*
+	* Allows the admin to add an university to the database
+	*@param String name, state, location, control
+	*Int numStudents, numApplicants, academicScale, socialScale, qOLScale
+	*double females, SATV, SATM, expenses, financialAid, admitted, enrolled
+	*ArrayList<String> emphasess
+	*
+	*@return the new university in the database; x
+	*/
+	public void addUniversity(University uni)
+	{
+		boolean check = dbc.addUniversity(uni);
+		if (check == false)
+		{
+			System.out.println("Similar university name is already there");
+			//throw new IllegalArgumentException("Similar university name is already there");
+		}
+		
+	}
 	
 	
 	/** 

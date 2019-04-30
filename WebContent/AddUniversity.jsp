@@ -111,9 +111,21 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="vertical-align: top;">Emphases<br>
+					<td style="vertical-align: top;">Emphases 1<br>
 					</td>
-					<td style="vertical-align: top;"><input name="emphasesName">
+					<td style="vertical-align: top;"><input name="emp1">
+					</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top;">Emphases 2<br>
+					</td>
+					<td style="vertical-align: top;"><input name="emp2">
+					</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top;">Emphases 3<br>
+					</td>
+					<td style="vertical-align: top;"><input name="emp3">
 					</td>
 				</tr>
 			</tbody>

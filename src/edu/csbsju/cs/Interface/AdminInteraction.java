@@ -19,6 +19,7 @@ import edu.csbsju.cs.Controllers.*;
 */
 public class AdminInteraction {
 	private AdminFunctionalityController afc = new AdminFunctionalityController();
+	private UniversityController uc = new UniversityController();
 
 	/**
 	 * Constructor
@@ -77,7 +78,7 @@ public class AdminInteraction {
 				  females,  SATV,  SATM,  expenses,  financialAid, 
 				  numApplicants,  admitted, enrolled, academicScale, socialScale, 
 				  qOLScale, emphasess);
-		afc.addUniversity(uni);
+		uc.addUniversity(uni);
 	}
 
 	/**

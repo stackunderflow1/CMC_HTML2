@@ -76,25 +76,7 @@ else if(!(status == 'Y' || status == 'N'))
 
 	}
 
-	/*
-	* Allows the admin to add an university to the database
-	*@param String name, state, location, control
-	*Int numStudents, numApplicants, academicScale, socialScale, qOLScale
-	*double females, SATV, SATM, expenses, financialAid, admitted, enrolled
-	*ArrayList<String> emphasess
-	*
-	*@return the new university in the database; x
-	*/
-	public void addUniversity(University uni)
-	{
-		boolean check = dbc.addUniversity(uni);
-		if (check == false)
-		{
-			System.out.println("Similar university name is already there");
-			//throw new IllegalArgumentException("Similar university name is already there");
-		}
-		
-	}
+	
 	/*
 	* Allows the admin to get all the users in the database
 	*@param 

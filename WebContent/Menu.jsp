@@ -4,10 +4,10 @@
 <title></title>
 </head>
 <body>
-<%@page language="java" import="edu.csbsju.csci230.*"%>
+<%@page language="java" import="edu.csbsju.cs.Interface.*, edu.csbsju.cs.Entity.*"%>
 <%@include file= "VerifyLogin.jsp" %>
-<%UserController uc = (UserController) session.getAttribute("uc"); 
-User u = uc.getCurrentUser();
+<%AdminInteraction uc = (AdminInteraction) session.getAttribute("uc"); 
+Users u = uc.getUser(request.getParameter("Username"));
 %>
 
 Hello User <%out.println(u.getUsername()); %>
@@ -42,11 +42,11 @@ Edit</td>
 href="Delete.jsp"></a>Delete
 </td>
 </tr>
-<%ArrayList<User> users = uc.getAllUsers();
+<%ArrayList<Users> users = uc.getAllUsers();
 
 for(int i = 0; i < users.size(); i++)
 {
-User cu = users.get(i);%>
+Users cu = users.get(i);%>
 <tr>
 <td style="vertical-align: top;">
 <form method="post" action="Edit.jsp" name="Edit">
@@ -56,7 +56,7 @@ User cu = users.get(i);%>
 </td>
 
 
-<td style="vertical-align: top;"><%out.println(cu.getfName() + " " + cu.getlName()); %>
+<td style="vertical-align: top;"><%out.println(cu.getFirstName() + " " + cu.getLastName()); %>
 </td>
 <td style="vertical-align: top;"><%out.println(cu.getUsername()); %>
 </td>
