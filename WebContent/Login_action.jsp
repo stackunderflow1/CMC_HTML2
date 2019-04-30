@@ -1,4 +1,4 @@
-<%@page language="java" import="edu.csbsju.cs.Controllers.*"%>
+<%@page language="java" import="edu.csbsju.cs.Controllers.*, edu.csbsju.cs.Entity.*, edu.csbsju.cs.Interface.*"%>
 
 <%
 
@@ -6,25 +6,32 @@
  String uName = request.getParameter("Username");
 String pWord = request.getParameter("Password");
 LogOnController uc = new LogOnController();
+AdminInteraction ac = new AdminInteraction();
+DataBaseController dbc = new DataBaseController();
 int returnValue = 1;
 uc.logOn(uName, pWord);
 
 
-if(returnValue == 0)
+if(dbc.checkUserName(uName) == true && dbc.checkPassword(pWord) == true)
 {
 	session.setAttribute("uc", uc);
-	response.sendRedirect("Menu.jsp");
+	Users u = ac.getUser(uName);
+	if(u.getType() == ('u'))
+	response.sendRedirect("StudentMenu.jsp");
+	
+	else
+		response.sendRedirect("Menu.jsp");
 }
 
-else if(returnValue == -1)
+else if(dbc.checkUserName(uName) == false)
 {
 	response.sendRedirect("index.jsp?Error=-1");
 }
-else if(returnValue == -2)
+else if(dbc.checkPassword(pWord) == false)
 {
 	response.sendRedirect("index.jsp?Error=-2");
 }
-else if(returnValue == -3)
+else if(dbc.checkStatus(uName) == false)
 {
 	response.sendRedirect("index.jsp?Error=-3");
 }

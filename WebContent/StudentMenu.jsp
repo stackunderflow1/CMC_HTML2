@@ -10,12 +10,12 @@ http-equiv="content-type">
 <%AdminInteraction uc = (AdminInteraction) session.getAttribute("uc"); 
 Users u = uc.getUser(request.getParameter("Username"));
 %>
-Welcome Admin: <%out.println(u.getUsername()); %><br>
+
+Welcome User: <%out.println(u.getUsername()); %><br>
 <br>
-<a href="AdminEditUser.jsp">Manage User Profile</a><br>
-<a href="ViewAllUniversities.jsp">Manage Universities</a><br>
-<a href="ManageUsers.jsp"><span style="text-decoration: underline;">Manage
-Users</span></a><br>
+<a href="Edit.jsp">Manage profile</a><br>
+<a href="ViewSavedSchool.jsp">Manage saved schools</a><br>
+<a href="SearchAct.jsp">Search for schools</a><br>
 </body>
 </html>
 

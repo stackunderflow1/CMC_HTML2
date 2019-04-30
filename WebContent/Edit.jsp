@@ -50,13 +50,13 @@
 					<td style="vertical-align: top;">Type<br>
 					</td>
 					<td style="vertical-align: top;"><input name="Type"
-						value="<%out.println(cu.getType());%>"></td>
+						value="<%out.println(cu.getType());%>" readonly></td>
 				</tr>
 				<tr>
 					<td style="vertical-align: top;">Status<br>
 					</td>
 					<td style="vertical-align: top;"><input name="Status"
-						value="<%out.println(cu.getStatus());%>"></td>
+						value="<%out.println(cu.getStatus());%>"readonly></td>
 				</tr>
 
 				<tr>
