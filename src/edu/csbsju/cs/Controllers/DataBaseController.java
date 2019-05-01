@@ -372,14 +372,19 @@ public class DataBaseController {
 	 * @param String
 	 *            uName, String school
 	 * @return 
-	 * @returns success
+	 * @return true if the university was added, false if it was not added
 	 *
 	 */
-	public int saveSchool(Users uName, University school) {
+	//NEW ***************
+	public boolean saveSchool(Users uName, University school) {
 
-		return univDBlib.user_saveSchool(uName.getUsername(), school.getName());
+		   int failed = univDBlib.user_saveSchool(uName.getUsername(), school.getName());
+		   if(failed != -1)
+		     return true;
+		   else{
+		     return false;}
+		  }
 
-	}
 	
 	public Users getUser(String uName) {
 		ArrayList<Users> users = getAllUsers();
