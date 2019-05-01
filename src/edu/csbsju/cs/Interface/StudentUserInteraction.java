@@ -61,11 +61,11 @@ public class StudentUserInteraction {
  * @return 
 	*@returns the saved university in the database
 	*/
-  public void saveUniversity(University school, Users uName) 
+  // NEW ********************
+  public void saveUniversity(Users uName,University school) 
   { 
-    sfc.saveSchool(school, uName);
+    sfc.saveSchool(uName, school);
   }
-  
   /**
 	*Deletes a saved school from the database
 	*@param University school
