@@ -12,9 +12,10 @@
 		import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Controllers.*"%>
 	<%@include file="VerifyLogin.jsp"%>
 	<%
-		out.println("Edit user : " + request.getParameter("Username"));
-		DataBaseController uc = (DataBaseController) session.getAttribute("uc");
-		Users cu = uc.getUser(request.getParameter("Username"));
+		
+		LogOnController uc = (LogOnController) session.getAttribute("uc");
+		Users cu = uc.getCurrentUser();
+		out.println("Edit user : " + cu.getUsername());
 	%>
 	<form method="post" action="Edit_action.jsp" name="editUser">
 		<br>
@@ -65,6 +66,9 @@
 					<td style="vertical-align: top;"><input value="Reset"
 						name="Reset" type="reset"></td>
 				</tr>
+			<form method="post" action="StudentMenu.jsp" name="Back">
+    <input name="Back" value="Back" type="submit">
+</form> 
 			</tbody>
 		</table>
 		<br>

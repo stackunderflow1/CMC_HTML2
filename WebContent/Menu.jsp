@@ -7,8 +7,8 @@ http-equiv="content-type">
 <body>
 <%@page language="java" import="edu.csbsju.cs.Interface.*, edu.csbsju.cs.Entity.*"%>
 <%@include file= "VerifyLogin.jsp" %>
-<%AdminInteraction uc = (AdminInteraction) session.getAttribute("uc"); 
-Users u = uc.getUser(request.getParameter("Username"));
+<%LogOnController uc = (LogOnController) session.getAttribute("uc"); 
+Users u = uc.getCurrentUser();
 %>
 Welcome Admin: <%out.println(u.getUsername()); %><br>
 <br>

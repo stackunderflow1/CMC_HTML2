@@ -183,6 +183,31 @@ public class DataBaseController {
 		}
 		return there;
 	}
+	
+	public boolean checkPassword(String name, String pass) {
+		boolean there = false;
+		ArrayList<Users> checkUsers = this.getAllUsers();
+		for (Users u : checkUsers) {
+			if (u.getUsername().equals(name)) {
+				if(u.getPassword().equals(pass)) {
+				there = true;
+			}
+		}
+		}
+		return there;
+	}
+	
+	public boolean checkStatus(String name) {
+		boolean there = false;
+		ArrayList<Users> checkUsers = this.getAllUsers();
+		for (Users u : checkUsers) {
+			if (u.getUsername().equals(name)) {
+				if(u.getStatus() == 'Y')
+				there = true;
+			}
+		}
+		return there;
+	}
 
 	/**
 	 * Allows the users to add a user to the database

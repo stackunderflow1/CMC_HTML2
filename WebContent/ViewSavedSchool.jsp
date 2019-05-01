@@ -16,12 +16,11 @@ cellspacing="2">
 
 </tr>
 <%
-	String name = request.getParameter("Username");
-    out.println("Saved Universities for user: " + name);
-	String uName = request.getParameter("Username");
-	StudentUserInteraction uc = (StudentUserInteraction) session.getAttribute("uc");
-	Users cu = uc.getProfile(uName);
-	ArrayList <SavedSchools> s = uc.viewAllSavedUniversitys(uName);
+	LogOnController uc = (LogOnController) session.getAttribute("uc");
+	StudentUserInteraction si = new StudentUserInteraction();
+	Users cu = uc.getCurrentUser();
+	out.println("Saved Universities for user: " + cu.getUsername());
+	ArrayList <SavedSchools> s = si.viewAllSavedUniversitys(cu.getUsername());
 	 for(int i = 0; i < s.size(); i++)
 	 {
 		SavedSchools sc = s.get(i);%>
@@ -71,6 +70,9 @@ cellspacing="2">
 </tr>
 <%} %>
 
+<form method="post" action="StudentMenu.jsp" name="Back">
+    <input name="Back" value="Back" type="submit">
+</form> 
 
 </body>
 </html>

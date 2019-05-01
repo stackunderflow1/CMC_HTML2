@@ -6,28 +6,30 @@
  String uName = request.getParameter("Username");
 String pWord = request.getParameter("Password");
 LogOnController uc = new LogOnController();
+StudentUserInteraction si = new StudentUserInteraction();
 AdminInteraction ac = new AdminInteraction();
 DataBaseController dbc = new DataBaseController();
 int returnValue = 1;
 uc.logOn(uName, pWord);
 
 
-if(dbc.checkUserName(uName) == true && dbc.checkPassword(pWord) == true)
+if(dbc.checkUserName(uName) == true && dbc.checkPassword(uName, pWord) == true)
 {
 	session.setAttribute("uc", uc);
 	Users u = ac.getUser(uName);
-	if(u.getType() == ('u'))
+	if(u.getStatus() == ('u'))
 	response.sendRedirect("StudentMenu.jsp");
 	
-	else
+	else if(u.getStatus() == 'a')
 		response.sendRedirect("Menu.jsp");
+
 }
 
 else if(dbc.checkUserName(uName) == false)
 {
 	response.sendRedirect("index.jsp?Error=-1");
 }
-else if(dbc.checkPassword(pWord) == false)
+else if(dbc.checkPassword(uName, pWord) == false)
 {
 	response.sendRedirect("index.jsp?Error=-2");
 }

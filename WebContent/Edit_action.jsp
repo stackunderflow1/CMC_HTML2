@@ -1,4 +1,4 @@
-<%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Controllers.*"%>
+<%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Controllers.*, edu.csbsju.cs.Interface.*"%>
 <%@include file= "VerifyLogin.jsp" %>
 <%  String uName = request.getParameter("Username");
 	String pWord = request.getParameter("Password");
@@ -6,12 +6,13 @@
   	String lName = request.getParameter("LastName");
    	
     
-DataBaseController uc = (DataBaseController) session.getAttribute("uc");
-Users users = uc.getUser(uName);
+LogOnController uc = (LogOnController) session.getAttribute("uc");
+AdminInteraction ac = new AdminInteraction();
+Users users = uc.getCurrentUser();
 users.setFirstName(fName);
 users.setLastName(lName);
 users.setPassword(pWord);
-uc.editUser(users);
+ac.editUser(users.getUsername(), users.getFirstName(), users.getLastName(), users.getPassword(), users.getStatus(), users.getType());
     
     
     response.sendRedirect("StudentMenu.jsp");

@@ -50,7 +50,7 @@ name="Reset" type="reset"></td>
 </tr>
 </tbody>
 </table>
-<br>
+Forgot your password? <a href="mailto:rgraham001@csbsju.edu">Send an email to your system manager and request a new password!</a><br>
 </form>
 <br>
 <% if(request.getParameter("Password") != null)

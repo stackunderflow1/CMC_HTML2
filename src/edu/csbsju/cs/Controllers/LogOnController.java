@@ -7,6 +7,7 @@ package edu.csbsju.cs.Controllers;
 *imports
 */
 import edu.csbsju.cs.Entity.*;
+import edu.csbsju.cs.Interface.*;
 import java.util.*;
 
 /**
@@ -21,9 +22,10 @@ public class LogOnController {
 	/**
 	 * private instance variables
 	 */
-
+	private Users currentUser;
 	private DataBaseController dbc;
 	private ArrayList<Users> allU;
+	private AdminInteraction ai = new AdminInteraction();
 	//private boolean isSLoggedOn = false;
 	private boolean isLoggedOn = false;
 	private boolean isAdminLoggedOn = false;
@@ -64,6 +66,7 @@ public class LogOnController {
 						else if (allU.get(i).getStatus() == 'a' ) {
 							this.isAdminLoggedOn = true;
 						}
+						currentUser = ai.getUser(username);
 					}
 					
 				}
@@ -110,8 +113,20 @@ public class LogOnController {
 		return isLoggedOn;
 	}
 	
+	
 	public boolean isAdminLoggedOn()
 	{
 		return isAdminLoggedOn;
 	}
+	
+	public Users getCurrentUser()
+	{
+		return this.currentUser;
+	}
+	
+	public void setCurrentUser(Users currentUser)
+	{
+		this.currentUser = currentUser;
+	}
+	
 }

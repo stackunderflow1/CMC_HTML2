@@ -5,24 +5,31 @@ http-equiv="content-type">
 <title>SearchAction</title>
 </head>
 <body>
-<form action="google.com" name="search">Search for schools:<br>
+<form method="post" action="StudentMenu.jsp" name="Back">
+    <input name="Back" value="Back" type="submit">
+</form> 
+<form method="post" action="Search.jsp" name="search">Search for schools:<br>
 <br>
-<input name="SATV" value="Enter SAT Verbal Score"><input
-name="enrolled" value="Enter % enrolled"><br>
-<input name="state" value="Enter State"><input name="SATM"
-value="Enter SAT Math Score"><input name="academicScale"
-value="Enter Academic Scale"><br>
-<input name="location" value="Enter Location"><input name="expenses"
-value="Enter Expenses"><input name="socialScale"
-value="Enter Social Scale"><br>
-<input name="control" value="Enter Control"><input name="financialAid"
-value="Enter Financial Aid"><input name="qOLScale"
-value="Enter Quality of Life Scale"><br>
-<input name="numStudents" value="Enter number of Students"><input
-name="numApplicants" value="Enter # of Applicants"><br>
-<input name="females" value="Enter % of females"><input
-name="admitted" value="Enter % admitted"><br>
+
 <br>
+Enter Name <input name="name"><br>
+Enter State<input name="state" value=""><br>
+Enter Location<input name="location" value=""><br>
+Enter Control Type<input name="control" value=""><br>
+Enter # of Students<input name="numStudents" value=""><br>
+Enter % of Females<input name="females" value=""><br>
+Enter SAT Verbal Score<input name="SATV" value=""><br>
+Enter SAT Math Score<input name="SATM" value=""><br>
+Enter Expenses<input name="expenses" value=""><br>
+Enter Financial Aid<input name="financialAid" value=""><br>
+Enter # of Applicants<input name="numApplicants" value=""><br>
+Enter % Admitted<input name="admitted" value=""><br>
+Enter % Enrolled<input name="enrolled" value=""><br>
+Enter Academic Scale Rating<input name="academicScale" value=""><br>
+Enter Social Scale Rating<input name="socialScale" value=""><br>
+Enter Quality of Life Rating<input name="qOLScale" value=""><br>
+<br>
+<input name="Enter" value="Enter" type="submit">
 </form>
 </body>
 </html>
