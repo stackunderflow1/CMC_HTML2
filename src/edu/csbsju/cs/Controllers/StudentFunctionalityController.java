@@ -95,17 +95,12 @@ public class StudentFunctionalityController {
 	 * @returns a 0 if saved school, -1 if not
 	 * 
 	 */
-
-	public void saveSchool(University uni, Users uName) {
+// NEW *************
+	public void saveSchool(Users uName, University uni) {
 		
 		//ArrayList<SavedSchools> list = dbc.getSavedSchools(uName);
 		//SavedSchools saved = new SavedSchools(uni, uName.getUsername());
-		int success = dbc.saveSchool(uName, uni);
-		
-		if (success == -1)
-		{
-			throw new UnsupportedOperationException("System failed");
-		}
+	 dbc.saveSchool(uName, uni);
 		
 		
 		/*if(list.size() == 0)
