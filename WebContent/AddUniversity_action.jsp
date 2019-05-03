@@ -1,8 +1,8 @@
-<%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Controllers.*"%>
-<%@include file= "AddUniversity_action.jsp" %>
+<%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Controllers.*, edu.csbsju.cs.Interface.*"%>
+
 
 <%
-DataBaseController dbc = (DataBaseController)session.getAttribute("dbc");
+LogOnController uc = (LogOnController)session.getAttribute("uc");
 
 String uName = request.getParameter("schoolName");
 String state = request.getParameter("stateName");
@@ -28,12 +28,11 @@ emphasesName.add(emp1);
 emphasesName.add(emp2);
 emphasesName.add(emp3);
 
-UniversityController uc = (UniversityController) session.getAttribute("uc");
-University uni = new University(uName, state, location, control, numStudents, 
+AdminInteraction ai = new AdminInteraction();
+ai.addUniversity(uName, state, location, control, numStudents, 
 		 females, SATV, SATM, expenses, financialAid, 
 		 numApplicants, admitted, enrolled, academicScale, socialScale, 
 		 qOLScale, emphasesName);
-uc.addUniversity(uni);
 response.sendRedirect("Menu.jsp");
 
 %>

@@ -1,42 +1,20 @@
+<title>View University</title>
 <%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Interface.*, edu.csbsju.cs.Controllers.*"%>
 
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>View All Saved Universities</title>
-</head>
-<body>
-<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
-cellspacing="2">
-<tbody>
-<tr align="center">
-
-<td colspan="8" rowspan="1" style="vertical-align: top;"><a
-href="AddUniverstiy.jsp">ADD A UNIVERSITY</a>
-</td>
-
-</tr>
-
 <%
-	String name = request.getParameter("Username");
-    out.println("List of All Universities");
-	String uName = request.getParameter("Username");
-	LogOnController uc = (LogOnController) session.getAttribute("uc");
-	AdminInteraction ai = new AdminInteraction();
-	Users cu = ai.getUser(uName);
-	ArrayList <University> s = ai.getAllSchoolDetails();
-	 for(int i = 0; i < s.size(); i++)
-	 {
-		University sc = s.get(i);%>
+LogOnController uc = (LogOnController) session.getAttribute("uc");
+String universityName = request.getParameter("uniName");
+StudentUserInteraction si = new StudentUserInteraction();
+University sc = si.viewUniversity(universityName);
+Users cu = si.getProfile(request.getParameter("Username"));
 
-<tr>
-<td style="vertical-align: top;">
-<form method="post" action="DeleteUniversity.jsp" name="Delete">
-    <input name="Delete" value="Delete" type="submit">
-    <input name="Username" value=<%=cu.getUsername() %> type="hidden">
+
+%>
+
+<form method="post" action="Search.jsp" name="Back">
+    <input name="Back" value="Back" type="submit">
 </form> 
-</td>
-
+<tr>
 <td style="vertical-align: top;"><%out.println(sc.getName()); %>
 </td>
 <td style="vertical-align: top;"><%out.println(sc.getState()); %>
@@ -71,16 +49,3 @@ href="AddUniverstiy.jsp">ADD A UNIVERSITY</a>
 </td>
 <td style="vertical-align: top;"><%out.println(sc.getEmphases()); %>
 </td>
-<td style="vertical-align: top;">
-<form method="post" action="EditUniversity.jsp" name="Edit">
-    <input name="Edit" value="Edit" type="submit">
-    <input name="Username" value="<%=cu.getUsername() %>" type="hidden">
-</form>
-</td>
-</tr>
-<%} %>
-
-
-
-</body>
-</html>

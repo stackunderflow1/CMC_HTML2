@@ -4,10 +4,12 @@
 <title></title>
 </head>
 <body>
-<%@page language="java" import="edu.csbsju.cs.Interface.*, edu.csbsju.cs.Entity.*"%>
-<%@include file= "VerifyLogin.jsp" %>
-<%AdminInteraction uc = (AdminInteraction) session.getAttribute("uc"); 
-Users u = uc.getUser(request.getParameter("Username"));
+<%@page language="java" import="edu.csbsju.cs.Interface.*, edu.csbsju.cs.Entity.*, edu.csbsju.cs.Controllers.*, java.util.*"%>
+
+<%
+LogOnController uc = (LogOnController) session.getAttribute("uc");
+AdminInteraction ai = new AdminInteraction();
+Users u = ai.getUser(request.getParameter("Username"));
 %>
 
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
@@ -40,7 +42,7 @@ Edit</td>
 href="Delete.jsp"></a>Delete
 </td>
 </tr>
-<%ArrayList<Users> users = uc.getAllUsers();
+<%ArrayList<Users> users = ai.getAllUsers();
 
 for(int i = 0; i < users.size(); i++)
 {

@@ -1,5 +1,5 @@
-<%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Interface.*"%>
-<%@include file= "VerifyLogin.jsp" %>
+<%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Interface.*,  edu.csbsju.cs.Controllers.*"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

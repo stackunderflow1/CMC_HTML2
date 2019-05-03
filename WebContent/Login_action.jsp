@@ -17,10 +17,10 @@ if(dbc.checkUserName(uName) == true && dbc.checkPassword(uName, pWord) == true)
 {
 	session.setAttribute("uc", uc);
 	Users u = ac.getUser(uName);
-	if(u.getStatus() == ('u'))
+	if(u.getType() == ('u'))
 	response.sendRedirect("StudentMenu.jsp");
 	
-	else if(u.getStatus() == 'a')
+	else if(u.getType() == 'a')
 		response.sendRedirect("Menu.jsp");
 
 }

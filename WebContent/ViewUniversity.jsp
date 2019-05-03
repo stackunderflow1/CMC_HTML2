@@ -1,17 +1,18 @@
 <title>View University</title>
 <%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Interface.*, edu.csbsju.cs.Controllers.*"%>
-<%@include file= "ViewUniversity.jsp" %>
+
 <%
 	String[] values = request.getParameterValues("Universities");
-	String universityName = request.getParameter("University");
-	StudentUserInteraction studentInt = (StudentUserInteraction) session.getAttribute("userInt");
+	String universityName = request.getParameter("uniName");
+	LogOnController uc = (LogOnController) session.getAttribute("uc");
+	StudentUserInteraction studentInt = new StudentUserInteraction();
 	University u = studentInt.viewUniversity(universityName);
-	Users student = studentInt.getProfile();
-	ArrayList<University> savedUniversities = student.viewAllSavedSchools();
+	Users student = studentInt.getProfile(request.getParameter("Username"));
+	ArrayList<SavedSchools> savedUniversities = studentInt.viewAllSavedUniversitys(student.getUsername());
 
-	if (!savedUniversities.contains(u)) {
+	/* if (!savedUniversities.contains(u)) { */
 %>
-<form method="post" action="SaveUniversity_action.jsp"
+<%-- <form method="post" action="SaveSchool_action.jsp"
 	name="SaveUniversity">
 	<input name="Save" value="Save" type="submit" class="buttonstyle">
 	<input name="University" value='<%=u.getName()%>' type="hidden">
@@ -29,7 +30,7 @@
 	} else {
 		out.print("Saved");
 	}
-%>
+%> --%>
 <table style="text-align: left; width: 700px; height: 228px;" border="1">
 	<tbody>
 		<tr>
@@ -150,10 +151,10 @@ PLEASE TAKE A LOOK AT THESE SIMILAR SCHOOLS
 <br>
 
 <%
-	ArrayList<University> recommendedUniversities = studentInt.viewRecommendedUniversities("");
+	ArrayList<University> recommendedUniversities = studentInt.viewRecommendedUniversities(u.getName());
 	for (University uni : recommendedUniversities) {
 %>
-<%
+<%-- <%
 	if (!savedUniversities.contains(uni)) {
 %>
 <form method="post" action="SaveUniversity_action.jsp"
@@ -175,7 +176,7 @@ PLEASE TAKE A LOOK AT THESE SIMILAR SCHOOLS
 	} else {
 			out.print("Saved");
 		}
-%>
+%> --%>
 <table style="text-align: left; width: 700px; height: 228px;" border="1">
 	<tbody>
 		<tr>
@@ -204,6 +205,8 @@ PLEASE TAKE A LOOK AT THESE SIMILAR SCHOOLS
 			<td style="vertical-align: top;"><input name="Control"
 				value=<%=uni.getControl()%> readonly></td>
 		</tr>
+		</tbody>
+</table>
 		<tr>
 			<td style="vertical-align: top;">NUMBER OF STUDENTS<br>
 			</td>
@@ -285,7 +288,7 @@ PLEASE TAKE A LOOK AT THESE SIMILAR SCHOOLS
 				<% 
 emphases = uni.getEmphases();
 for(String emphasis: emphases){
-%> <input value='<%=emphasis%>' readonly> <br> <%} %>
+%> <input value=<%=emphasis%> readonly> <br> <%} %>
 			</td>
 		</tr>
 	</tbody>

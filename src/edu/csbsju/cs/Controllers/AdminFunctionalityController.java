@@ -113,7 +113,7 @@ else if(!(status == 'Y' || status == 'N'))
 	*@param University uni0, uni1
 	*@return the  university edited in the database; x
 	*/
-	public void editSchool(String old, String name, String state, String location, String control, int numStudents, 
+	public void editSchool(String old, String state, String location, String control, int numStudents, 
 			 double females, double SATV, double SATM, double expenses, double financialAid, 
 			 int numApplicants, double admitted, double enrolled, int academicScale, int socialScale, 
 			 int qOLScale, ArrayList<String> emp) throws NameNotFoundException
@@ -123,7 +123,6 @@ else if(!(status == 'Y' || status == 'N'))
 		{
 			if(x.getName().equals(old))
 			{
-				x.setName(name);
 				x.setState(state);
 				x.setLocation(location);
 				x.setControl(control);
@@ -150,7 +149,7 @@ else if(!(status == 'Y' || status == 'N'))
 	*@param Users user
 	*@return the  university deactivated in the database; x
 	*/
-	public void changeStatus(String uName)
+	public void deactivateUser(String uName)
 	{
 		boolean found = false;
 		Users user = getUser(uName);
@@ -163,16 +162,11 @@ else if(!(status == 'Y' || status == 'N'))
 			dbc.editUser(user);
 			found = true;
 		}
-		else if(user.getStatus() == 'N')
-		{
-			user.setStatus('Y');
-			dbc.editUser(user);
-			found = true;
-		}
+		
 		if(found == false)
 		{
 			//System.out.println("User's status was not found");
-			throw new IllegalArgumentException("User's status was not found");
+			throw new IllegalArgumentException("User's already deactived");
 		}
 	}
 	

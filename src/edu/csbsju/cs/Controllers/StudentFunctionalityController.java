@@ -140,9 +140,9 @@ public class StudentFunctionalityController {
 		 dbc.removeSavedSchool(name, school);
 	}
 	
-	public void viewRecommendedUniversities(String n) 
+	public ArrayList<University> viewRecommendedUniversities(String n) 
 	  {
-	    uc.topRecommended(n);
+	    return uc.topRecommended(n);
 	  }
 	
 	// views a school's individual details

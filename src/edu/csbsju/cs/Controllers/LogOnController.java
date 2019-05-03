@@ -57,13 +57,13 @@ public class LogOnController {
 				iUser = true;
 				if (password.equals(allU.get(i).getPassword())) {
 					iPass = true;
-					if (allU.get(i).getType() == 'Y') {
+					if (allU.get(i).getStatus() == 'Y') {
 						iAcc = true;
-						if (allU.get(i).getStatus() == 'u')
+						if (allU.get(i).getType() == 'u')
 						{
 							this.isLoggedOn = true;
 						}
-						else if (allU.get(i).getStatus() == 'a' ) {
+						else if (allU.get(i).getType() == 'a' ) {
 							this.isAdminLoggedOn = true;
 						}
 						currentUser = ai.getUser(username);

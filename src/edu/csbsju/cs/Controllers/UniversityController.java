@@ -33,6 +33,7 @@ public class UniversityController {
 	*
 	*@returns a clone out of the university arrayList
 	*/
+	@SuppressWarnings("unchecked")
 	public ArrayList<University> searchAllSchools(String name, String state, String location, String control, String numStudents, String females, String SATV, String SATM, String expenses, String financialAid, String numApplicants, String admitted, String enrolled, String academicScale, String socialScale, String qOLScale) throws NumberFormatException
 	{
 		
@@ -152,7 +153,7 @@ public class UniversityController {
 	*@param String n
 	*@returns
 	*/
-	public void topRecommended(String n) {
+	public ArrayList<University> topRecommended(String n) {
 		// TODO Auto-generated constructor stub
 		University u = null;
 		for(int i = 0; i<schools.size(); i++)
@@ -176,8 +177,8 @@ public class UniversityController {
 			sc[i] = univ.getName();
 			i++;
 		}
-		System.out.println("Top Recommended for school '" + n + "':");
-		topRecommendedSort(distances, sc);
+		//System.out.println("Top Recommended for school '" + n + "':");
+		return topRecommendedSort(distances, sc);
 			}
 			
 	
@@ -274,7 +275,7 @@ public class UniversityController {
 	*@param double [] a1, String [] a2
 	*@returns
 	*/
-	public static void topRecommendedSort(double a1[], String a2[])
+	public ArrayList<University> topRecommendedSort(double a1[], String a2[])
 	{
 		int n = a1.length;
 		for (int i = 0; i< n-1; i++)
@@ -292,8 +293,21 @@ public class UniversityController {
 				}
 			}
 		}
-		System.out.println("\n" + a2[1] + "\n" + a2[2] + "\n" +a2[3] + "\n" + a2[4] + "\n" + a2[5]);
-		System.out.println("\n\nwith distances of: \n" + a2[1] + ": " + a1[1] + "\n" + a2[2] + ": " + a1[2] + "\n" +a2[3] + ": " +a1[3] + "\n" + a2[4] + ": " + a1[4] + "\n" + a2[5] + ": " + a1[5]);
+		
+		ArrayList<University> list = new ArrayList<University>();
+		for(int i = 1; i< 6; i++)
+		{
+			for(int x = 0; x<schools.size(); x++)
+			{
+				if(schools.get(x).getName().equals(a2[i]))
+				{
+					list.add(schools.get(x));
+				}
+			}
+		}
+		return list;
+		/*System.out.println("\n" + a2[1] + "\n" + a2[2] + "\n" +a2[3] + "\n" + a2[4] + "\n" + a2[5]);
+		System.out.println("\n\nwith distances of: \n" + a2[1] + ": " + a1[1] + "\n" + a2[2] + ": " + a1[2] + "\n" +a2[3] + ": " +a1[3] + "\n" + a2[4] + ": " + a1[4] + "\n" + a2[5] + ": " + a1[5]);*/
 	}
 	
 	//@param double SATV, double SATM

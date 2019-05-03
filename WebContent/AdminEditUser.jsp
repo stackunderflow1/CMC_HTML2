@@ -1,18 +1,14 @@
 <%@page language="java"
 	import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Interface.*, edu.csbsju.cs.Controllers.*"%>
-<%@include file="VerifyLogin.jsp"%>
+
 
 
 
 <%
-Account currentUser = (Account)session.getAttribute("currentUser");
-if(currentUser == null || currentUser.getType() != 'a'){
-	response.sendRedirect("login.jsp?Error=0");
-}
- else if (currentUser.getType() == 'a'){
-	DatabaseController dbc = (DatabaseController)session.getAttribute("dbc");
-	String userName = request.getParameter("UserName");
-	String[] student = dbc.getUser(userName); %>
+	LogOnController uc = (LogOnController)session.getAttribute("uc");
+	AdminInteraction ai = new AdminInteraction();
+	ArrayList<Users> user = ai.getAllUsers();
+	 %>
 <html>
 <head>
 
@@ -24,7 +20,7 @@ if(currentUser == null || currentUser.getType() != 'a'){
 	<br>
 
 	<%
-    out.println("Edit user : " + request.getParameter("Username"));
+    out.println("Edit user : " + uc.getCurrentUser());
 %>
 	<form method="post" action="AdminEditUser_Action.jsp" name="editUser">
 		<br>

@@ -10,17 +10,17 @@
     		out.println("Username not found");
 	    }
     	else if(anyErrors!=null && anyErrors.equals("-2")){
-    		out.println("incorrect password");
+    		out.println("Incorrect password");
 	    }
     	else if(anyErrors!=null && anyErrors.equals("-3")){
-    		out.println("user inactive");
+    		out.println("User inactive");
 	    }
-    	else if(anyErrors!=null && anyErrors.equals("-4")){
-    		out.println("you must be logged in");
-	    }
+    	/* else if(anyErrors!=null && anyErrors.equals("-4")){
+    		out.println("you must be logged in"); 
+	    } */
     	else
     	{
-    		out.println("Please enter the dimensions of the desired table below:");
+    		out.println("Please enter your info:");
     	}
     	%>
 <br>
@@ -38,7 +38,7 @@ border="1" cellpadding="2" cellspacing="2">
 <tr>
 <td style="vertical-align: top;">Password<br>
 </td>
-<td style="vertical-align: top;"><input name="Password"> </td>
+<td style="vertical-align: top;"><input name="Password" type="password"> </td>
 </tr>
 
   

@@ -10,7 +10,7 @@
 
 	<%@page language="java"
 		import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Controllers.*"%>
-	<%@include file="VerifyLogin.jsp"%>
+
 	<%
 		
 		LogOnController uc = (LogOnController) session.getAttribute("uc");

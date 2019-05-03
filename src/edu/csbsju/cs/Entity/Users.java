@@ -19,13 +19,13 @@ public class Users {
 	public String firstName, lastName, userName, password;
 	public char type, status;
 	//Creates a User
-	public Users(String first, String last, String userNames, String passwords, char statuss, char types) {
+	public Users(String first, String last, String userNames, String passwords, char types, char statuss) {
 		this.firstName = first;
 		this.lastName = last;
 		this.userName = userNames;
 		this.password = passwords;
-		this.type = types;
 		this.status = statuss;
+		this.type = types;
 			
 	}
 	//Logs in 

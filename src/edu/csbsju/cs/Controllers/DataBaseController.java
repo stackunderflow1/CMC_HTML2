@@ -145,7 +145,7 @@ public class DataBaseController {
 	public boolean addUniversity(University uni) {
 		boolean isNowThere = false;
 		if (!this.checkSchoolName(uni.getName())) {
-			univDBlib.university_addUniversity(uni.getName(), uni.getState(), uni.getLocation(), uni.getControl(),
+			univDBlib.university_addUniversity(uni.getName().toUpperCase(), uni.getState().toUpperCase(), uni.getLocation().toUpperCase(), uni.getControl().toUpperCase(),
 					uni.getNumStudents(), uni.getFemales(), uni.getSATV(), uni.getSATM(), uni.getExpenses(),
 					uni.getFinancialAid(), uni.getNumApplicants(), uni.getAdmitted(), uni.getEnrolled(),
 					uni.getAcademicScale(), uni.getSocialScale(), uni.getqOLScale());
@@ -153,7 +153,7 @@ public class DataBaseController {
 			ArrayList<String> emp = uni.getEmphases();
 			int i = 0;
 			while (i < emp.size()) {
-				univDBlib.university_addUniversityEmphasis(uni.getName(), emp.get(i));
+				univDBlib.university_addUniversityEmphasis(uni.getName().toUpperCase(), emp.get(i));
 			}
 		} else {
 			isNowThere = false;
@@ -237,11 +237,11 @@ public class DataBaseController {
 
 		ArrayList<University> uniE = this.getAllSchoolDetails();
 		for (University u : uniE) {
-			if (u.getName().equals(uni.getName())) {
+			if (u.getName().toUpperCase().equals(uni.getName().toUpperCase())) {
 				for (String i : uni.getEmphases()) {
-					univDBlib.university_removeUniversityEmphasis(u.getName(), i);
+					univDBlib.university_removeUniversityEmphasis(u.getName().toUpperCase(), i);
 				}
-				univDBlib.university_deleteUniversity(uni.getName());
+				univDBlib.university_deleteUniversity(uni.getName().toUpperCase());
 			}
 		}
 	}
@@ -256,11 +256,33 @@ public class DataBaseController {
 	 */
 	public void editSchool(University uni) {
 		
-		univDBlib.university_editUniversity(uni.getName(), uni.getState(), uni.getLocation(), uni.getControl(),
+		if(checkSchoolName(uni.getName()) == true)
+		{
+		univDBlib.university_editUniversity(uni.getName().toUpperCase(), uni.getState().toUpperCase(), uni.getLocation().toUpperCase(), uni.getControl().toUpperCase(),
 				uni.getNumStudents(), uni.getFemales(), uni.getSATV(), uni.getSATM(), uni.getExpenses(),
 				uni.getFinancialAid(), uni.getNumApplicants(), uni.getAdmitted(), uni.getEnrolled(),
 				uni.getAcademicScale(), uni.getSocialScale(), uni.getqOLScale());
 		
+		ArrayList<String> old = getEmp(uni.getName());
+		ArrayList<String> neww = uni.getEmphases();
+		
+		if(!old.isEmpty())
+		{
+			for(String i : old)
+			{
+				univDBlib.university_removeUniversityEmphasis(uni.getName(), i);
+			}
+			
+		}
+		
+		if(!neww.isEmpty())
+		{
+			for(String i: neww)
+			{
+				univDBlib.university_addUniversityEmphasis(uni.getName(), i);
+			}
+		}
+		}
 	}
 
 	/**
@@ -353,15 +375,36 @@ public class DataBaseController {
 		univDBlib.user_removeSchool(uName, school);
 
 	}
+	
+	public ArrayList<String> getEmp(String uniName)
+	{
+		String [][] emp = univDBlib.university_getNamesWithEmphases();
+		ArrayList<String> newEmp = new ArrayList<String>();
+		for(int i =0; i<emp.length; i++)
+		{
+			if(emp[i][0].equals(uniName))
+			{
+				newEmp.add(emp[i][1]);
+			}
+		}
+		return newEmp;
+	}
+	
 	public University viewSchoolDetails(String universityName) {
 		
 		ArrayList<University> univ = getAllSchoolDetails();
+		try {
 		for(int i = 0; i<univ.size(); i++)
 		{
 			if(univ.get(i).getName().equals(universityName))
 			{
 				return univ.get(i);
 			}
+		}
+		}
+		catch(IllegalArgumentException iae)
+		{
+		throw new IllegalArgumentException("School not found!");
 		}
 		throw new IllegalArgumentException("School not found!");
 	}

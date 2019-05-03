@@ -1,6 +1,6 @@
 
 <%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Interface.*, edu.csbsju.cs.Controllers.*"%>
-<%@include file= "VerifyLogin.jsp" %>
+
 <%
 String uName = request.getParameter("name");
 String state = request.getParameter("state");
@@ -38,17 +38,22 @@ int i;
 <table style="text-align: left; width: 100%;" border="1"
 cellpadding="2" cellspacing="2">
 <tbody>
-<%for(i = 1; i <= uni.size(); i++){%>
+<%for(i = 0; i <= uni.size(); i++){%>
 <tr>
-<td style="vertical-align: top;"><form method="post" action="ViewUniversity.jsp" name="Back">
-    <input name="Back" value="Back" type="submit"><br>
+<td style="vertical-align: top;"><form>
+    <input name="View" value="View" action="ViewUniversity1.jsp" type="submit"><br>
+    <input name="uniName" value=<%=uni.get(i).getName() %> type="hidden"><br>
+    <input name="Username" value=<%=uc.getCurrentUser().getUsername() %> type="hidden"><br>
 </form> 
 </td>
 <td style="vertical-align: top;"><br>
-	<% out.println(uni.get(i-1).getName());%>
+	<% out.println(uni.get(i).getName());%>
 </td>
-<td style="vertical-align: top;"><input name="saveSchool"
-value="Save School" type="submit"><br>
+<td style="vertical-align: top;">
+<form>
+<input name="saveSchool" value="Save School" action="SaveSchool_Action.jsp" type="submit"><br>
+<input name="saveUni" value=<%=uni.get(i).getName() %> type="hidden"><br>
+<input name="Username" value=<%=uc.getCurrentUser().getUsername() %> type="hidden"><br>
 </td>
 </tr>
 <%} %>

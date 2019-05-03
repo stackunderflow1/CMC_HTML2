@@ -51,9 +51,9 @@ public class StudentUserInteraction {
 	*@param 
 	*@returns the recommended universities to the user
 	*/
-  public void viewRecommendedUniversities(String n) 
+  public ArrayList<University> viewRecommendedUniversities(String n) 
   {
-    sfc.viewRecommendedUniversities(n);
+    return sfc.viewRecommendedUniversities(n);
   }
   /**
 	* Saves a university to the database

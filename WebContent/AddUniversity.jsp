@@ -6,8 +6,8 @@
 </head>
 <body>
 <%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Interface.*, edu.csbsju.cs.Controllers.*"%>
-<%@include file= "AddUniversity.jsp" %>
-<% DataBaseController uc = (DataBaseController) session.getAttribute("uc");%>
+
+<% LogOnController uc = (LogOnController) session.getAttribute("uc");%>
 	<big>Add a new university</big>
 	<br>
 	<form name="AddUniversity">

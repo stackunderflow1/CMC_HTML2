@@ -1,10 +1,11 @@
 <%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Interface.*, edu.csbsju.cs.Controllers.*"%>
-<%@include file= "VerifyLogin.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%DataBaseController dbc = (DataBaseController) session.getAttribute("dbc");
-  University uni = uni.viewSchoolDetails(request.getParameter("schoolName"));%>
+<%LogOnController dbc = (LogOnController) session.getAttribute("uc");
+AdminInteraction ai = new AdminInteraction();
+  University uni = ai.viewSchoolDetails(request.getParameter("schoolName"));%>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
 <title>EditUniversity</title>
 <style type="text/css"></style>
@@ -114,9 +115,21 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="vertical-align: top;">Emphases<br>
+					<td style="vertical-align: top;">Emphases 1<br>
 					</td>
-					<td style="vertical-align: top;"><input name="emphasesName" <%=uni.getEmphases()%>>
+					<td style="vertical-align: top;"><input name="emp1" <%=uni.getEmphases().get(0)%>>
+					</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top;">Emphases 2<br>
+					</td>
+					<td style="vertical-align: top;"><input name="emp2" <%=uni.getEmphases().get(1)%>>
+					</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top;">Emphases 3<br>
+					</td>
+					<td style="vertical-align: top;"><input name="emp3" <%=uni.getEmphases().get(2)%>>
 					</td>
 				</tr>
 			</tbody>

@@ -5,8 +5,8 @@ http-equiv="content-type">
 <title></title>
 </head>
 <body>
-<%@page language="java" import="edu.csbsju.cs.Interface.*, edu.csbsju.cs.Entity.*"%>
-<%@include file= "VerifyLogin.jsp" %>
+<%@page language="java" import="edu.csbsju.cs.Interface.*, edu.csbsju.cs.Entity.*, edu.csbsju.cs.Controllers.*"%>
+
 <%LogOnController uc = (LogOnController) session.getAttribute("uc"); 
 Users u = uc.getCurrentUser();
 %>
