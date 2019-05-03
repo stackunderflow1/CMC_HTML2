@@ -19,6 +19,7 @@ import edu.csbsju.cs.Entity.*;
 public class AdminFunctionalityController {
 
 	private DataBaseController dbc;
+	private UniversityController uc;
 	/**
 	 * Constructor 
 	 */
@@ -76,6 +77,10 @@ else if(!(status == 'Y' || status == 'N'))
 
 	}
 
+	public void addUniversity(University uni)
+	{
+		uc.addUniversity(uni);
+	}
 	
 	/*
 	* Allows the admin to get all the users in the database
@@ -116,7 +121,7 @@ else if(!(status == 'Y' || status == 'N'))
 	public void editSchool(String old, String state, String location, String control, int numStudents, 
 			 double females, double SATV, double SATM, double expenses, double financialAid, 
 			 int numApplicants, double admitted, double enrolled, int academicScale, int socialScale, 
-			 int qOLScale, ArrayList<String> emp) throws NameNotFoundException
+			 int qOLScale) throws NameNotFoundException
 	{
 		ArrayList<University> univ = dbc.getAllSchoolDetails();
 		for (University x : univ)

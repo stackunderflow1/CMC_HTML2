@@ -10,7 +10,7 @@
 <% LogOnController uc = (LogOnController) session.getAttribute("uc");%>
 	<big>Add a new university</big>
 	<br>
-	<form name="AddUniversity">
+	<form name="AddUniversity" action="AddUniversity_action.jsp">
 		<table style="text-align: left; width: 458px; height: 480px;"
 			border="1" cellpadding="2" cellspacing="2">
 			<tbody>
@@ -131,7 +131,7 @@
 			</tbody>
 		</table>
 		<br> <input name="addSchool" value="Add School" type="submit"><input
-			name="cancleChanges" value="Cancle Changes" type="submit"><br>
+			name="cancelChanges" value="Cancel Changes" type="submit"><br>
 	</form>
 </body>
 </html>

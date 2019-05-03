@@ -107,7 +107,7 @@ public class CMCDriver {
 		{
 		System.out.println(save.get(i).getUniversity().print());
 		}
-		sui.saveUniversity(uni, user);
+		sui.saveUniversity(user, uni);
 		System.out.println("\n**New list of saved schools after saving school**\n");
 		ArrayList<SavedSchools>saveTo = sui.viewAllSavedUniversitys(user.getUsername());
 		for(int i = 0; i< saveTo.size(); i++)
@@ -189,7 +189,7 @@ public class CMCDriver {
 		}
 		
 		System.out.println("\n\n********** CHANGE USER STATUS **********");
-		ai.changeStatus(dummy1.getUsername());
+		ai.deactivateUser(dummy1.getUsername());;
 		allUsers = ai.getAllUsers();
 		for(Users i: allUsers)
 		{

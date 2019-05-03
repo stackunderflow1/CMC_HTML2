@@ -78,7 +78,7 @@ public class AdminInteraction {
 				  females,  SATV,  SATM,  expenses,  financialAid, 
 				  numApplicants,  admitted, enrolled, academicScale, socialScale, 
 				  qOLScale, emphasess);
-		uc.addUniversity(uni);
+		afc.addUniversity(uni);
 	}
 
 	/**
@@ -111,16 +111,16 @@ public class AdminInteraction {
 	public void editSchool(String old, String state, String location, String control, int numStudents, 
 			 double females, double SATV, double SATM, double expenses, double financialAid, 
 			 int numApplicants, double admitted, double enrolled, int academicScale, int socialScale, 
-			 int qOLScale, ArrayList<String> emp) throws NameNotFoundException
+			 int qOLScale) throws NameNotFoundException
 	{
-		afc.editSchool(old, state, location, control, numStudents, females, SATV, SATM, expenses, financialAid, numApplicants, admitted, enrolled, academicScale, socialScale, qOLScale, emp);
+		afc.editSchool(old, state, location, control, numStudents, females, SATV, SATM, expenses, financialAid, numApplicants, admitted, enrolled, academicScale, socialScale, qOLScale);
 	}
 	/**
 	* Deactivates a user
 	*@param Users user
 	*@returns the list of users without the deactivated user
 	*/
-	public void deactiveUser(String user)
+	public void deactivateUser(String user)
 	{
 		afc.deactivateUser(user);
 

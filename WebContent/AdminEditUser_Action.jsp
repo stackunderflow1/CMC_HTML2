@@ -9,7 +9,7 @@
     String status = request.getParameter("Status");
     
 AdminInteraction ai = new AdminInteraction();
-ai.editUser(fName, lName, uName, pWord, type.charAt(0), status.charAt(0));
+ai.editUser(uName, fName, lName, pWord, type.charAt(0), status.charAt(0));
     
     
     response.sendRedirect("Menu.jsp");

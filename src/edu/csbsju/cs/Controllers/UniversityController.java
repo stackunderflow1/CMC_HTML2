@@ -43,7 +43,7 @@ public class UniversityController {
 
 		for(int i =0; i<schools.size(); i++)
 		{
-			if(!name.equals(null) && !name.equals("-1") && !name.equals("")) {
+			if(!(name.equals(null)) && !(name.equals("-1")) && !(name.equals(""))) {
 			if(schools.get(i).getName().toLowerCase().indexOf(name.toLowerCase())< 0)
 					{
 				schools2.remove(schools.get(i));

@@ -10,9 +10,9 @@
 	Users student = studentInt.getProfile(request.getParameter("Username"));
 	ArrayList<SavedSchools> savedUniversities = studentInt.viewAllSavedUniversitys(student.getUsername());
 
-	/* if (!savedUniversities.contains(u)) { */
+	 if (!savedUniversities.contains(u)) { 
 %>
-<%-- <form method="post" action="SaveSchool_action.jsp"
+<form method="post" action="SaveSchool_action.jsp"
 	name="SaveUniversity">
 	<input name="Save" value="Save" type="submit" class="buttonstyle">
 	<input name="University" value='<%=u.getName()%>' type="hidden">
@@ -30,7 +30,7 @@
 	} else {
 		out.print("Saved");
 	}
-%> --%>
+%>
 <table style="text-align: left; width: 700px; height: 228px;" border="1">
 	<tbody>
 		<tr>
@@ -154,7 +154,7 @@ PLEASE TAKE A LOOK AT THESE SIMILAR SCHOOLS
 	ArrayList<University> recommendedUniversities = studentInt.viewRecommendedUniversities(u.getName());
 	for (University uni : recommendedUniversities) {
 %>
-<%-- <%
+<%
 	if (!savedUniversities.contains(uni)) {
 %>
 <form method="post" action="SaveUniversity_action.jsp"
@@ -176,7 +176,7 @@ PLEASE TAKE A LOOK AT THESE SIMILAR SCHOOLS
 	} else {
 			out.print("Saved");
 		}
-%> --%>
+%>
 <table style="text-align: left; width: 700px; height: 228px;" border="1">
 	<tbody>
 		<tr>

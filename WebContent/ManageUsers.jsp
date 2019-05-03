@@ -49,7 +49,7 @@ for(int i = 0; i < users.size(); i++)
 Users cu = users.get(i);%>
 <tr>
 <td style="vertical-align: top;">
-<form method="post" action="Edit.jsp" name="Edit">
+<form method="post" action="AdminEditUser.jsp" name="Edit">
     <input name="Edit" value="Edit" type="submit">
     <input name="Username" value="<%=cu.getUsername() %>" type="hidden">
 </form>

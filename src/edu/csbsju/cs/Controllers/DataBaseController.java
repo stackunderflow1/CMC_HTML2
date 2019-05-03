@@ -261,9 +261,9 @@ public class DataBaseController {
 		univDBlib.university_editUniversity(uni.getName().toUpperCase(), uni.getState().toUpperCase(), uni.getLocation().toUpperCase(), uni.getControl().toUpperCase(),
 				uni.getNumStudents(), uni.getFemales(), uni.getSATV(), uni.getSATM(), uni.getExpenses(),
 				uni.getFinancialAid(), uni.getNumApplicants(), uni.getAdmitted(), uni.getEnrolled(),
-				uni.getAcademicScale(), uni.getSocialScale(), uni.getqOLScale());
+				uni.getAcademicScale(), uni.getSocialScale(), uni.getqOLScale());}
 		
-		ArrayList<String> old = getEmp(uni.getName());
+		/*ArrayList<String> old = getEmp(uni.getName());
 		ArrayList<String> neww = uni.getEmphases();
 		
 		if(!old.isEmpty())
@@ -282,7 +282,7 @@ public class DataBaseController {
 				univDBlib.university_addUniversityEmphasis(uni.getName(), i);
 			}
 		}
-		}
+		}*/
 	}
 
 	/**
@@ -393,19 +393,18 @@ public class DataBaseController {
 	public University viewSchoolDetails(String universityName) {
 		
 		ArrayList<University> univ = getAllSchoolDetails();
-		try {
+		
 		for(int i = 0; i<univ.size(); i++)
 		{
+			if(checkSchoolName(universityName) == true)
+			{
 			if(univ.get(i).getName().equals(universityName))
 			{
 				return univ.get(i);
 			}
+			}
 		}
-		}
-		catch(IllegalArgumentException iae)
-		{
-		throw new IllegalArgumentException("School not found!");
-		}
+	
 		throw new IllegalArgumentException("School not found!");
 	}
 

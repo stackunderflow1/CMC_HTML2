@@ -8,6 +8,9 @@
 	LogOnController uc = (LogOnController)session.getAttribute("uc");
 	AdminInteraction ai = new AdminInteraction();
 	ArrayList<Users> user = ai.getAllUsers();
+	String us = request.getParameter("Username");
+	Users u = ai.getUser(us);
+	
 	 %>
 <html>
 <head>
@@ -20,7 +23,7 @@
 	<br>
 
 	<%
-    out.println("Edit user : " + uc.getCurrentUser());
+    out.println("Edit user : " + u.getUsername());
 %>
 	<form method="post" action="AdminEditUser_Action.jsp" name="editUser">
 		<br>
@@ -31,38 +34,38 @@
 					<td style="vertical-align: top;">First Name<br>
 					</td>
 					<td style="vertical-align: top;"><input name="FirstName"
-						value=<%request.getParameter("FirstName");%>><br></td>
+						value=<%out.println(u.getFirstName());%>><br></td>
 				</tr>
 				<tr>
 				<tr>
 					<td style="vertical-align: top;">Last Name<br>
 					</td>
 					<td style="vertical-align: top;"><input name="LastName"
-						value=<%request.getParameter("LastName");%>><br></td>
+						value=<%out.println(u.getLastName());%>><br></td>
 				</tr>
 				<tr>
 					<td style="vertical-align: top;">Username<br>
 					</td>
 					<td style="vertical-align: top;"><input name="Username"
-						value=<%request.getParameter("Username");%> readonly></td>
+						value=<%out.println(u.getUsername());%> readonly></td>
 				</tr>
 				<tr>
 					<td style="vertical-align: top;">Password<br>
 					</td>
 					<td style="vertical-align: top;"><input name="Password"
-						value=<%request.getParameter("Password");%>></td>
+						value=<%out.println(u.getPassword());%>></td>
 				</tr>
 				<tr>
 					<td style="vertical-align: top;">Type<br>
 					</td>
 					<td style="vertical-align: top;"><input name="Type"
-						value=<%request.getParameter("Type").charAt(0);%>></td>
+						value=<%out.println(u.getType());%>></td>
 				</tr>
 				<tr>
 					<td style="vertical-align: top;">Status<br>
 					</td>
 					<td style="vertical-align: top;"><input name="Status"
-						value=<%request.getParameter("Status").charAt(0);%>></td>
+						value=<%out.println(u.getStatus());%>></td>
 				</tr>
 
 				<tr>

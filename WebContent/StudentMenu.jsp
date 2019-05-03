@@ -16,6 +16,11 @@ Welcome User: <%out.println(u.getUsername()); %><br>
 <a href="Edit.jsp">Manage profile</a><br>
 <a href="ViewSavedSchool.jsp">Manage saved schools</a><br>
 <a href="SearchAct.jsp">Search for schools</a><br>
+<br>
+<br>
+<form method="post" action="LogOut_Action.jsp" name="Log Out">
+<input value="Log Out" name="Log Out" type="submit">
+</form>
 </body>
 </html>
 

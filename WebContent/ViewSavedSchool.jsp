@@ -30,6 +30,8 @@ cellspacing="2">
 <form method="post" action="DeleteSavedSchool.jsp" name="Delete">
     <input name="Delete" value="Delete" type="submit">
     <input name="Username" value=<%=cu.getUsername() %> type="hidden">
+        <input name="SchoolName" value=<%=sc.getName()%> type="hidden">
+    
 </form> 
 </td>
 
