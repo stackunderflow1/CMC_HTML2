@@ -146,7 +146,7 @@ public class StudentFunctionalityController {
 	  }
 	
 	// views a school's individual details
-	public University viewSchoolDetails(String universityName) throws NameNotFoundException {
+	public University viewSchoolDetails(String universityName) {
 		
 		return dbc.viewSchoolDetails(universityName);
 		

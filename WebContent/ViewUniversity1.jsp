@@ -1,20 +1,49 @@
-<title>View University</title>
-<%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Interface.*, edu.csbsju.cs.Controllers.*"%>
+<%@page language="java" import="edu.csbsju.cs.Entity.*,java.util.*, edu.csbsju.cs.Interface.*,  edu.csbsju.cs.Controllers.*"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>View All Universities</title>
+</head>
+<body>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
+cellspacing="2">
+<tbody>
+<tr align="center">
 
+<td colspan="8" rowspan="1" style="vertical-align: top;">
+</td>
+
+</tr>
 <%
-LogOnController uc = (LogOnController) session.getAttribute("uc");
-String universityName = request.getParameter("uniName");
-StudentUserInteraction si = new StudentUserInteraction();
-University sc = si.viewUniversity(universityName);
-Users cu = si.getProfile(request.getParameter("Username"));
+	LogOnController uc = (LogOnController) session.getAttribute("uc");
+	AdminInteraction si = new AdminInteraction();
+	StudentUserInteraction studentInt = new StudentUserInteraction();
+	Users cu = uc.getCurrentUser();
+	ArrayList<University> schools = si.getAllSchoolDetails();
+	University sc = null;
+	String name = request.getParameter("SchoolName");
+	for(int i = 0; i< schools.size(); i++)
+	{
+		if(schools.get(i).getName().toLowerCase().indexOf(name.toLowerCase()) >= 0)
+		{
+			sc = si.viewSchoolDetails(name); 
+		}
+	}
+	
+	//out.println(name);
+	
+	%>
 
-
-%>
-
-<form method="post" action="Search.jsp" name="Back">
-    <input name="Back" value="Back" type="submit">
-</form> 
 <tr>
+<td style="vertical-align: top;">
+<form method="post" action="SaveSchool_Action.jsp" name="Save">
+    <input name="Save" value="Save" type="submit">
+    <input name="Username" value=<%=cu.getUsername() %> type="hidden">
+        <input name="SchoolName" value="<%=sc.getName()%>" type="hidden">
+    
+</form> 
+</td>
+
 <td style="vertical-align: top;"><%out.println(sc.getName()); %>
 </td>
 <td style="vertical-align: top;"><%out.println(sc.getState()); %>
@@ -49,3 +78,10 @@ Users cu = si.getProfile(request.getParameter("Username"));
 </td>
 <td style="vertical-align: top;"><%out.println(sc.getEmphases()); %>
 </td>
+<form method="post" action="Search.jsp" name="Back">
+    <input name="Back" value="Back" type="submit">
+</form> 
+</tr>
+
+</body>
+</html>

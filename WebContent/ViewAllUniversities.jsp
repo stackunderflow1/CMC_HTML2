@@ -34,8 +34,8 @@ href="AddUniversity.jsp">ADD A UNIVERSITY</a>
 <td style="vertical-align: top;">
 <form method="post" action="DeleteUniversity.jsp" name="Delete">
     <input name="Delete" value="Delete" type="submit">
-    <input name="Username" value=<%=uc.getCurrentUser()%> type="hidden">
-    <input name="uniName" value=<%=sc.getName()%> type="hidden">
+    <input name="Username" value="<%=uc.getCurrentUser()%>" type="hidden">
+    <input name="uniName" value="<%=sc.getName()%>" type="hidden">
  </form> 
 </td>
 
@@ -76,8 +76,8 @@ href="AddUniversity.jsp">ADD A UNIVERSITY</a>
 <td style="vertical-align: top;">
 <form method="post" action="EditUniversity.jsp" name="Edit">
     <input name="Edit" value="Edit" type="submit">
-    <input name="Username" value=<%=uc.getCurrentUser()%> type="hidden">
-     <input name="uniName" value="<%=sc.getName() %>" type="hidden"> 
+    <input name="Username" value="<%=uc.getCurrentUser()%>" type="hidden">
+     <input name="uniName" value="<%=sc.getName()%>" type="hidden"> 
 </form>
 </td>
 </tr>

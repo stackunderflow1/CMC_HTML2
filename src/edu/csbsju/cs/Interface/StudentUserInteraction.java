@@ -24,7 +24,7 @@ public class StudentUserInteraction {
 	*/
 	private StudentFunctionalityController sfc = new StudentFunctionalityController();
 	
-  public University viewUniversity(String uni) throws NameNotFoundException
+  public University viewUniversity(String uni)
   {
     return sfc.viewSchoolDetails(uni);
   }

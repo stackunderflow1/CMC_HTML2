@@ -34,44 +34,47 @@ ArrayList<University> uni = uci.searchAllSchools(uName, state, location, control
   <form method="post" action="SearchAct.jsp" name="Back">
   <input name="Back" value="Back" type="submit">
   </form>
- <%--  <%
+  <%
   if (!uni.isEmpty()) {
-  %> --%>
+  %>
     <form name="results">
     <table style="text-align: left; width: 100%;" border="1"
     cellpadding="2" cellspacing="2">
     <tbody>
     <%
-    for (int i = 0; i <= uni.size(); i++) {
+    for (int i = 0; i < uni.size(); i++) {
     %>
       <tr>
       <td style="vertical-align: top;">
-      <form>
-      <input name="View" value="View" action="ViewUniversity1.jsp" type="submit"><br>  
-      <input name="uniName" value=<%=uni.get(i).getName()%> type="hidden"><br>
-      </form>
+      <form method="post" action="ViewUniversity1.jsp" name="View">
+    <input name="View" value="View" type="submit">
+    <input name="Username" value="<%=uc.getCurrentUser().getUsername()%>" type="hidden">
+        <input name="SchoolName" value="<%=uni.get(i).getName()%>" type="hidden">
+    
+</form> 
       </td>
       <td style="vertical-align: top;"><br> <%
       out.println(uni.get(i).getName());
     %>
   </td>
     <td style="vertical-align: top;">
-    <form>
-    <input name="saveSchool" value="Save School"
-    action="SaveSchool_Action.jsp" type="submit"><br> <input
-    name="saveUni" value=<%=uni.get(i).getName()%> type="hidden"><br>
-    <%-- <input name="Username" value=<%=uc.getCurrentUser().getUsername() %> type="hidden"><br> --%>
-    </form>
+    <form method="post" action="SaveSchool_Action.jsp" name="Save">
+    <input name="Save" value="Save" type="submit">
+    <input name="Username" value="<%=uc.getCurrentUser().getUsername()%>" type="hidden">
+        <input name="SchoolName" value="<%=uni.get(i).getName()%>" type="hidden">
+    
+</form> 
     </td>
     </tr>
     <%
+    
 }
 %>
-  <%-- <%
+  <%
   } else {
   out.println("There are no results that matches your search.");
 }
-%> --%>
+%>
   </tbody>
   </table>
   <br>

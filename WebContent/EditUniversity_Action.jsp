@@ -2,7 +2,8 @@
 	<% 
 	LogOnController uc = (LogOnController) session.getAttribute("uc");
 	AdminInteraction ai = new AdminInteraction();
-	String name = request.getParameter("uniName");
+	String name = request.getParameter("schoolName");
+	System.out.println(name);
 	ArrayList<University> univ = ai.getAllSchoolDetails();
 	University school = ai.viewSchoolDetails(name);
 	

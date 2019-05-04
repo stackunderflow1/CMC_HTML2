@@ -6,6 +6,7 @@
 	LogOnController uc = (LogOnController) session.getAttribute("uc");
 	AdminInteraction ai = new AdminInteraction();
 	University uni = ai.viewSchoolDetails(request.getParameter("uniName"));
+	System.out.println(uni.getName());
 %>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
 <title>EditUniversity</title>
@@ -26,13 +27,13 @@
 					<td style="vertical-align: top;">School<br>
 					</td>
 					<td style="vertical-align: top;"><input name="schoolName"
-						value=<%=uni.getName()%> readonly><br></td>
+						value="<%=uni.getName()%>" readonly><br></td>
 				</tr>
 				<tr>
 					<td style="vertical-align: top;">State<br>
 					</td>
 					<td style="vertical-align: top;"><input name="stateName"
-						value=<%=uni.getState()%>></td>
+						value="<%=uni.getState()%>"></td>
 				</tr>
 				<tr>
 					<td style="vertical-align: top;">Location<br>

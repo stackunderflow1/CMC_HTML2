@@ -80,7 +80,21 @@ public class AdminInteraction {
 				  qOLScale, emphasess);
 		afc.addUniversity(uni);
 	}
-
+	
+	public void addUniversity2(String name, String state, String location, String control, int numStudents, 
+			 double females, double SATV, double SATM, double expenses, double financialAid, 
+			 int numApplicants, double admitted, double enrolled, int academicScale, int socialScale, 
+			 int qOLScale)
+	{
+	
+	ArrayList<String>emp = new ArrayList<String>();
+	
+		University uni = new University(name,  state, location,  control,  numStudents, 
+				  females,  SATV,  SATM,  expenses,  financialAid, 
+				  numApplicants,  admitted, enrolled, academicScale, socialScale, 
+				  qOLScale, emp);
+		afc.addUniversity(uni);
+	}
 	/**
 	* gets all the users in the database
 	*@param
